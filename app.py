@@ -5,7 +5,9 @@ st.set_page_config(
     page_icon="🌋",
     layout="wide"
 )
+df = pd.read_csv("data/tsa01_dashboard.csv")
 
+ultimo = df.iloc[-1]
 st.title("🌋 EGT GeoControl")
 st.subheader("Geothermal Project Control Center")
 
@@ -14,22 +16,40 @@ st.markdown("---")
 col1, col2, col3, col4, col5, col6 = st.columns(6)
 
 with col1:
-    st.metric("Profundidad", "430 m")
+    st.metric(
+    "Profundidad",
+    f"{ultimo['md']} m"
+)
 
 with col2:
-    st.metric("Avance", "14.3 %")
+    st.metric(
+    "Avance",
+    f"{ultimo['afe_pct']} %"
+)
 
 with col3:
-    st.metric("Días", "30")
+    st.metric(
+    "Días",
+    int(ultimo['dia_campania'])
+)
 
 with col4:
-    st.metric("Coste", "4.3 M$")
+    st.metric(
+    "Coste",
+    f"{ultimo['coste_acumulado']/1000000:.1f} M$"
+)
 
 with col5:
-    st.metric("ROP", "1.29 m/h")
+    st.metric(
+    "ROP",
+    f"{ultimo['rop']} m/h"
+)
 
 with col6:
-    st.metric("NPT", "42 h")
+    st.metric(
+    "NPT",
+    f"{ultimo['npt']} h"
+)
 
 st.markdown("---")
 
