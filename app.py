@@ -13,6 +13,10 @@ coste_por_metro = (
     ultimo["coste_acumulado"] /
     ultimo["md"]
 )
+coste_por_dia = (
+    ultimo["coste_acumulado"] /
+    ultimo["dia_campania"]
+)
 depth_df = pd.read_csv(
     "data/tsa01_depth_history.csv"
 )
@@ -22,6 +26,19 @@ events_df = pd.read_csv(
 cost_df = pd.read_csv(
     "data/tsa01_cost_history.csv"
 )
+cost_df = pd.read_csv(
+    "data/tsa01_cost_history.csv"
+)
+
+numero_eventos = len(events_df)
+
+if numero_eventos >= 5:
+    semaforo_riesgo = "🔴 RIESGO OPERATIVO"
+elif numero_eventos >= 3:
+    semaforo_riesgo = "🟠 RIESGO OPERATIVO"
+else:
+    semaforo_riesgo = "🟢 RIESGO OPERATIVO"
+
 st.title("🌋 EGT GeoControl")
 st.subheader("Geothermal Project Control Center")
 st.markdown("---")
@@ -46,10 +63,10 @@ with col_c:
     st.success("🟢 SEGURIDAD")
 
 with col_d:
-    st.warning("🟠 RIESGO OPERATIVO")
+    st.warning(semaforo_riesgo)
 st.markdown("---")
 
-col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
 
 with col1:
     st.metric(
@@ -95,7 +112,11 @@ with col7:
         f"{coste_por_metro:,.0f}"
 
     )
-
+with col8:
+    st.metric(
+        "$/día",
+        f"{coste_por_dia:,.0f}"
+    )
 st.markdown("---")
 
 st.header("📊 Estado General")
