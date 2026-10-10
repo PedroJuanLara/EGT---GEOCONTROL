@@ -29,7 +29,6 @@ st.info(
     plazo, coste, seguridad e incidencias operativas.
     """
 )
-``
 
 col_a, col_b, col_c, col_d = st.columns(4)
 
