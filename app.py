@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 st.set_page_config(
     page_title="EGT GeoControl",
     page_icon="🌋",
@@ -8,6 +9,9 @@ st.set_page_config(
 df = pd.read_csv("data/tsa01_dashboard.csv")
 
 ultimo = df.iloc[-1]
+depth_df = pd.read_csv(
+    "data/tsa01_depth_history.csv"
+)
 st.title("🌋 EGT GeoControl")
 st.subheader("Geothermal Project Control Center")
 
@@ -63,7 +67,25 @@ st.info(
     de campañas geotérmicas de EGT.
     """
 )
+st.header("📈 Profundidad vs Día de Campaña")
 
+fig = px.line(
+    depth_df,
+    x="dia",
+    y="md",
+    markers=True,
+    title="Evolución de profundidad TSA-01"
+)
+
+fig.update_layout(
+    xaxis_title="Día de Campaña",
+    yaxis_title="Profundidad MD (m)"
+)
+
+st.plotly_chart(
+    fig,
+    use_container_width=True
+)
 st.header("⚠️ Alertas")
 
 st.warning(
