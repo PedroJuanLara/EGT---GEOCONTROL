@@ -15,6 +15,9 @@ depth_df = pd.read_csv(
 events_df = pd.read_csv(
     "data/tsa01_events.csv"
 )
+cost_df = pd.read_csv(
+    "data/tsa01_cost_history.csv"
+)
 st.title("🌋 EGT GeoControl")
 st.subheader("Geothermal Project Control Center")
 
@@ -87,6 +90,25 @@ fig.update_layout(
 
 st.plotly_chart(
     fig,
+    use_container_width=True
+)
+st.header("💰 Coste Acumulado vs Día de Campaña")
+
+fig_cost = px.line(
+    cost_df,
+    x="dia",
+    y="coste",
+    markers=True,
+    title="Evolución económica TSA-01"
+)
+
+fig_cost.update_layout(
+    xaxis_title="Día de Campaña",
+    yaxis_title="Coste Acumulado ($)"
+)
+
+st.plotly_chart(
+    fig_cost,
     use_container_width=True
 )
 st.header("⚠️ Mapa de Incidencias por Profundidad")
