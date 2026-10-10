@@ -12,6 +12,9 @@ ultimo = df.iloc[-1]
 depth_df = pd.read_csv(
     "data/tsa01_depth_history.csv"
 )
+events_df = pd.read_csv(
+    "data/tsa01_events.csv"
+)
 st.title("🌋 EGT GeoControl")
 st.subheader("Geothermal Project Control Center")
 
