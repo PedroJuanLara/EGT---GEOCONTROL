@@ -1,2 +1,2 @@
-# EGT---GEOCONTROL
+# EGT-GEOCONTROL
 Geothermal Project Control Center
