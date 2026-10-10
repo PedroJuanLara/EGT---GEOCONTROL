@@ -89,6 +89,26 @@ st.plotly_chart(
     fig,
     use_container_width=True
 )
+st.header("⚠️ Mapa de Incidencias por Profundidad")
+
+fig_events = px.scatter(
+    events_df,
+    x="criticidad",
+    y="profundidad",
+    color="categoria",
+    hover_data=["tipo", "descripcion"],
+    title="Eventos TSA-01"
+)
+
+fig_events.update_layout(
+    yaxis_title="Profundidad (m)",
+    xaxis_title="Criticidad"
+)
+
+st.plotly_chart(
+    fig_events,
+    use_container_width=True
+)
 st.header("⚠️ Alertas")
 
 st.warning(
