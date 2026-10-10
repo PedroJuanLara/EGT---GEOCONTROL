@@ -20,7 +20,30 @@ cost_df = pd.read_csv(
 )
 st.title("🌋 EGT GeoControl")
 st.subheader("Geothermal Project Control Center")
+st.markdown("---")
 
+st.header("🚦 Estado Ejecutivo")
+st.info(
+    """
+    Estado general del proyecto basado en:
+    plazo, coste, seguridad e incidencias operativas.
+    """
+)
+``
+
+col_a, col_b, col_c, col_d = st.columns(4)
+
+with col_a:
+    st.success("✅ PLAZO")
+
+with col_b:
+    st.success("✅ COSTE")
+
+with col_c:
+    st.success("✅ SEGURIDAD")
+
+with col_d:
+    st.warning("⚠️ RIESGO OPERATIVO")
 st.markdown("---")
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
