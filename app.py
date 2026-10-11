@@ -153,7 +153,7 @@ with col_doc7:
 
 st.text_area(
     "Ruta SharePoint",
-    ruta_sharepoint,
+    f"353_DAILY_REPORTS/{sondeo_actual.replace('-', '_')}",
     height=120
 )
 
