@@ -154,13 +154,13 @@ with col_doc5:
 with col_doc6:
     st.metric(
         "Sincronización",
-        "Pendiente"
+        estado_sincronizacion
     )
 
 with col_doc7:
     st.metric(
         "Última sincronización",
-        "Sin datos"
+        ultima_sincronizacion
     )
 
 st.text_area(
