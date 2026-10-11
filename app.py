@@ -93,12 +93,16 @@ elif numero_eventos >= 3:
 
 else:
     semaforo_riesgo = "🟢 RIESGO OPERATIVO"
-f"Sondeo seleccionado: {sondeo_actual}"
+if pagina == "Gestión Documental":
+
+    st.title("📁 Gestión Documental")
+
+    st.subheader(
+        f"Sondeo seleccionado: {sondeo_actual}"
     )
 
     if sondeo_actual == "TSA-01":
         carpeta_sharepoint = "TSA_01"
-
     else:
         carpeta_sharepoint = "TSA_02"
 
@@ -118,6 +122,10 @@ f"Sondeo seleccionado: {sondeo_actual}"
         • Estado de sincronización
 
         • Conexión SharePoint
+        """
+    )
+
+    st.stop()
 st.title("🌋 EGT GeoControl")
 
 st.caption(
