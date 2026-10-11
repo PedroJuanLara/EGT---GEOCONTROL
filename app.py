@@ -264,7 +264,56 @@ with g1:
         f"{ultimo['md']} m de {objetivo_md} m"
     )
     
+with g2:
 
+    fig_coste = go.Figure()
+
+    fig_coste.add_trace(
+        go.Indicator(
+            mode="gauge+number",
+            value=avance_coste_pct,
+            number={
+                "suffix": "%"
+            },
+            title={
+                "text": "💰 Presupuesto"
+            },
+            gauge={
+                "axis": {
+                    "range": [0, 100]
+                },
+                "bar": {
+                    "color": "#2E8B57"
+                },
+                "bgcolor": "white",
+                "steps": [
+                    {
+                        "range": [0, 100],
+                        "color": "#E6E6E6"
+                    }
+                ]
+            }
+        )
+    )
+
+    fig_coste.update_layout(
+        height=180,
+        margin=dict(
+            t=20,
+            b=20,
+            l=20,
+            r=20
+        )
+    )
+
+    st.plotly_chart(
+        fig_coste,
+        use_container_width=True
+    )
+
+    st.caption(
+        f"{ultimo['coste_acumulado']/1000000:.1f} M$ de {objetivo_coste/1000000:.1f} M$"
+    )
     st.caption("🌋 Avance Físico")
 st.header("📊 Estado General")
 
