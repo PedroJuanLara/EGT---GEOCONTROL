@@ -267,26 +267,22 @@ with col_inc:
 
     for _, row in incidencias_df.iterrows():
 
-        if row["criticidad"] == "Alta":
-            icono = "🔴"
-
-        elif row["criticidad"] == "Media":
-            icono = "🟠"
-
-        else:
-            icono = "🟢"
-if row["criticidad"] == "Alta":
+    if row["criticidad"] == "Alta":
+        icono = "🔴"
         color_fondo = "#FDECEC"
         color_borde = "#D64541"
 
     elif row["criticidad"] == "Media":
+        icono = "🟠"
         color_fondo = "#FFF4E5"
         color_borde = "#F5A623"
 
     else:
+        icono = "🟢"
         color_fondo = "#EAF7EA"
         color_borde = "#4FAF4F"
-        st.markdown(
+
+    st.markdown(
         f"""
 <div style="
 background-color:{color_fondo};
