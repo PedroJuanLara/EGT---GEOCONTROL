@@ -124,7 +124,7 @@ if sincronizar:
     st.info(
         "Sincronización SharePoint en desarrollo"
     )
-
+    
 col_doc4, col_doc5, col_doc6, col_doc7 = st.columns(4)
 
 with col_doc4:
@@ -186,9 +186,10 @@ with col_doc1:
     )
 
 with col_doc2:
+
     st.metric(
         "Sondeo",
-        carpeta_sharepoint
+        sondeo_actual
     )
 
 with col_doc3:
@@ -196,21 +197,23 @@ with col_doc3:
         "Origen",
         "SharePoint"
     )
-    st.info(
-        """
-        Próximamente se mostrará:
 
-        • Número de DDR detectados
+st.info(
+    """
+    Próximamente se mostrará:
 
-        • Último reporte sincronizado
+    • Número de DDR detectados
 
-        • Estado de sincronización
+    • Último reporte sincronizado
 
-        • Conexión SharePoint
-        """
-    )
+    • Estado de sincronización
+
+    • Conexión SharePoint
+    """
+)
 
     st.stop()
+
 st.title("🌋 EGT GeoControl")
 
 st.caption(
