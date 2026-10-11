@@ -255,25 +255,41 @@ st.plotly_chart(
     use_container_width=True
 )
 st.header("⚠️ Incidencias Relevantes")
+col_inc, col_pozo = st.columns([2,1])
+with col_inc:
 
-st.dataframe(
-    events_df[
-        [
-            "profundidad",
-            "tipo",
-            "categoria",
-            "criticidad",
-            "descripcion"
-        ]
-    ],
-    use_container_width=True,
-    hide_index=True
-)
+    st.subheader("📋 Últimas incidencias")
 
-st.plotly_chart(
-    fig_events,
-    use_container_width=True
-)
+    st.dataframe(
+        events_df[
+            [
+                "profundidad",
+                "tipo",
+                "criticidad",
+                "descripcion"
+            ]
+        ],
+        use_container_width=True,
+        hide_index=True
+    )
+with col_pozo:
+
+    st.subheader("🛢 Perfil del Pozo")
+
+    st.markdown("🔴 430 m - Mud Pump Failure")
+
+    st.markdown("🟠 419 m - ADA Leak")
+
+    st.markdown("🔴 405 m - Partial Losses")
+
+    st.markdown("🔴 390 m - Drill Out Failure")
+
+    st.markdown("🟡 121 m - String Stall")
+
+    st.markdown("---")
+
+    st.markdown("⬇️ Fondo del pozo")
+
 st.header("⚠️ Alertas")
 
 st.warning(
