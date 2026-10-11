@@ -261,9 +261,9 @@ with col_inc:
     st.subheader("⚠️ Incidencias Relevantes")
 
     incidencias_df = events_df.sort_values(
-        by="profundidad",
-        ascending=False
-    )
+    by="profundidad",
+    ascending=True
+)
 
     for _, row in incidencias_df.iterrows():
 
@@ -275,20 +275,39 @@ with col_inc:
 
         else:
             icono = "🟢"
+if row["criticidad"] == "Alta":
+        color_fondo = "#FDECEC"
+        color_borde = "#D64541"
 
+    elif row["criticidad"] == "Media":
+        color_fondo = "#FFF4E5"
+        color_borde = "#F5A623"
+
+    else:
+        color_fondo = "#EAF7EA"
+        color_borde = "#4FAF4F"
         st.markdown(
-            f"""
-### {icono} {row['tipo']}
+        f"""
+<div style="
+background-color:{color_fondo};
+border-left:8px solid {color_borde};
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+">
 
-📍 **Profundidad:** {row['profundidad']} m
+<b>{icono} {row['tipo']}</b><br><br>
 
-**Categoría:** {row['categoria']}
+📍 <b>Profundidad:</b> {row['profundidad']} m<br>
+
+📂 <b>Categoría:</b> {row['categoria']}<br><br>
 
 📝 {row['descripcion']}
 
----
-"""
-        )
+</div>
+""",
+        unsafe_allow_html=True
+    )
 with col_pozo:
 
     st.subheader("🛢 Perfil del Pozo")
