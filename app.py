@@ -7,6 +7,15 @@ st.set_page_config(
     page_icon="🌋",
     layout="wide"
 )
+st.sidebar.title("🌋 GeoControl")
+
+sondeo_actual = st.sidebar.selectbox(
+    "Seleccionar sondeo",
+    [
+        "TSA-01",
+        "TSA-02"
+    ]
+)
 df = pd.read_csv("data/tsa01_dashboard.csv")
 
 ultimo = df.iloc[-1]
@@ -52,7 +61,15 @@ cost_df = pd.read_csv(
 cost_df = pd.read_csv(
     "data/tsa01_cost_history.csv"
 )
+st.sidebar.title("🌋 GeoControl")
 
+sondeo_actual = st.sidebar.selectbox(
+    "Seleccionar sondeo",
+    [
+        "TSA-01",
+        "TSA-02"
+    ]
+)
 numero_eventos = len(events_df)
 
 if numero_eventos >= 5:
@@ -63,6 +80,10 @@ else:
     semaforo_riesgo = "🟢 RIESGO OPERATIVO"
 
 st.title("🌋 EGT GeoControl")
+st.caption(
+    f"Sondeo activo: {sondeo_actual}"
+)
+
 st.subheader("Geothermal Project Control Center")
 st.markdown("---")
 
