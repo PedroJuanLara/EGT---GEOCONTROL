@@ -124,7 +124,7 @@ if sincronizar:
     st.info(
         "Sincronización SharePoint en desarrollo"
     )
-    col_doc4, col_doc5, col_doc6 = st.columns(3)
+    col_doc4, col_doc5, col_doc6, col_doc7 = st.columns(4)
 
 with col_doc4:
     st.metric(
@@ -142,6 +142,12 @@ with col_doc6:
     st.metric(
         "Sincronización",
         "Pendiente"
+    )
+
+with col_doc7:
+    st.metric(
+        "Última sincronización",
+        "Sin datos"
     )
 if sondeo_actual == "TSA-01":
 
