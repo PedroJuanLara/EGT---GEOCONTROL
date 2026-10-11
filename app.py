@@ -17,7 +17,13 @@ sondeo_actual = st.sidebar.selectbox(
     ],
     key="selector_sondeo_principal"
 )
-
+pagina = st.sidebar.radio(
+    "Navegación",
+    [
+        "Dashboard",
+        "Gestión Documental"
+    ]
+)
 if sondeo_actual == "TSA-01":
 
     dashboard_file = "data/TSA_01/dashboard.csv"
@@ -87,7 +93,31 @@ elif numero_eventos >= 3:
 
 else:
     semaforo_riesgo = "🟢 RIESGO OPERATIVO"
+f"Sondeo seleccionado: {sondeo_actual}"
+    )
 
+    if sondeo_actual == "TSA-01":
+        carpeta_sharepoint = "TSA_01"
+
+    else:
+        carpeta_sharepoint = "TSA_02"
+
+    st.metric(
+        "Carpeta SharePoint",
+        carpeta_sharepoint
+    )
+
+    st.info(
+        """
+        Próximamente se mostrará:
+
+        • Número de DDR detectados
+
+        • Último reporte sincronizado
+
+        • Estado de sincronización
+
+        • Conexión SharePoint
 st.title("🌋 EGT GeoControl")
 
 st.caption(
