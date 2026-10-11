@@ -276,7 +276,7 @@ with col_pozo:
 
     st.subheader("🛢 Perfil del Pozo")
 st.markdown("🌋 Superficie")
-st.markdown("│"
+st.markdown("│")
     perfil_df = events_df.sort_values(
     by="profundidad",
     ascending=True
