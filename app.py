@@ -539,19 +539,13 @@ with col_inc:
     c1, c2, c3 = st.columns(3)
 
     with c1:
-        st.error(
-            f"🔴 Altas: {altas}"
-        )
+        st.error(f"🔴 Altas: {altas}")
 
     with c2:
-        st.warning(
-            f"🟠 Medias: {medias}"
-        )
+        st.warning(f"🟠 Medias: {medias}")
 
     with c3:
-        st.success(
-            f"🟢 Bajas: {bajas}"
-        )
+        st.success(f"🟢 Bajas: {bajas}")
 
     incidencias_df = events_df.sort_values(
         by="profundidad",
@@ -580,16 +574,14 @@ with col_inc:
 <div style="
 background-color:{color_fondo};
 border-left:8px solid {color_borde};
-padding:15px;
-margin-bottom:15px;
+padding:12px;
+margin-bottom:10px;
 border-radius:10px;
 ">
 
 <b>{icono} {row['tipo']}</b><br><br>
 
-📍 <b>Profundidad:</b> {row['profundidad']} m<br>
-
-📂 <b>Categoría:</b> {row['categoria']}<br><br>
+<b>{row['profundidad']} m</b> | {row['categoria']}<br><br>
 
 📝 {row['descripcion']}
 
