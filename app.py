@@ -275,20 +275,34 @@ with col_inc:
 with col_pozo:
 
     st.subheader("🛢 Perfil del Pozo")
+st.markdown("🌋 Superficie")
+st.markdown("│"
+    perfil_df = events_df.sort_values(
+    by="profundidad",
+    ascending=True
+)
+for _, row in perfil_df.iterrows():
 
-    st.markdown("🔴 430 m - Mud Pump Failure")
+    if row["criticidad"] == "Alta":
+        icono = "🔴"
 
-    st.markdown("🟠 419 m - ADA Leak")
+    elif row["criticidad"] == "Media":
+        icono = "🟠"
 
-    st.markdown("🔴 405 m - Partial Losses")
+    else:
+        icono = "🟢"
 
-    st.markdown("🔴 390 m - Drill Out Failure")
+    st.markdown("│")
 
-    st.markdown("🟡 121 m - String Stall")
+    st.markdown(
+        f"├─ {icono} {row['profundidad']} m"
+    )
 
-    st.markdown("---")
-
-    st.markdown("⬇️ Fondo del pozo")
+    st.caption(
+        row["tipo"]
+    )
+    st.markdown("│")
+st.markdown("⬇️ Fondo del pozo")
 
 st.header("⚠️ Alertas")
 
