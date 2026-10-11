@@ -275,34 +275,38 @@ with col_inc:
 with col_pozo:
 
     st.subheader("🛢 Perfil del Pozo")
-st.markdown("🌋 Superficie")
-st.markdown("│")
+
+    st.markdown("🌋 Superficie")
+    st.markdown("│")
+
     perfil_df = events_df.sort_values(
-    by="profundidad",
-    ascending=True
-)
-for _, row in perfil_df.iterrows():
-
-    if row["criticidad"] == "Alta":
-        icono = "🔴"
-
-    elif row["criticidad"] == "Media":
-        icono = "🟠"
-
-    else:
-        icono = "🟢"
-
-    st.markdown("│")
-
-    st.markdown(
-        f"├─ {icono} {row['profundidad']} m"
+        by="profundidad",
+        ascending=True
     )
 
-    st.caption(
-        row["tipo"]
-    )
+    for _, row in perfil_df.iterrows():
+
+        if row["criticidad"] == "Alta":
+            icono = "🔴"
+
+        elif row["criticidad"] == "Media":
+            icono = "🟠"
+
+        else:
+            icono = "🟢"
+
+        st.markdown("│")
+
+        st.markdown(
+            f"├─ {icono} {row['profundidad']} m"
+        )
+
+        st.caption(
+            row["tipo"]
+        )
+
     st.markdown("│")
-st.markdown("⬇️ Fondo del pozo")
+    st.markdown("⬇️ Fondo del pozo")
 
 st.header("⚠️ Alertas")
 
