@@ -325,88 +325,93 @@ st.info(
     de campañas geotérmicas de EGT.
     """
 )
-st.header("📈 Profundidad vs Día de Campaña")
+col_graf1, col_graf2 = st.columns(2)
+with col_graf1:
 
-fig = px.line(
-    depth_df,
-    x="dia",
-    y="md",
-    markers=True,
-    title="Evolución de profundidad TSA-01",
-    color_discrete_sequence=["#0F4C81"]
-)
+    st.header("📈 Profundidad vs Día de Campaña")
 
-fig.update_traces(
-    line=dict(width=4),
-    marker=dict(size=8),
-    fill="tozeroy"
-)
+    fig = px.line(
+        depth_df,
+        x="dia",
+        y="md",
+        markers=True,
+        title="Evolución de profundidad TSA-01",
+        color_discrete_sequence=["#0F4C81"]
+    )
+    
+    fig.update_traces(
+        line=dict(width=4),
+        marker=dict(size=8),
+        fill="tozeroy"
+    )
+    
+    fig.update_layout(
+        xaxis_title="Día de Campaña",
+        yaxis_title="Profundidad MD (m)",
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        height=500,
+        title_x=0.5,
+        font=dict(size=14)
+    )
+    fig.update_xaxes(
+        showgrid=True,
+        gridcolor="#E6E6E6"
+    )
+    
+    fig.update_yaxes(
+        showgrid=True,
+        gridcolor="#E6E6E6"
+    )
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+with col_graf2:
 
-fig.update_layout(
-    xaxis_title="Día de Campaña",
-    yaxis_title="Profundidad MD (m)",
-    plot_bgcolor="white",
-    paper_bgcolor="white",
-    height=500,
-    title_x=0.5,
-    font=dict(size=14)
-)
-fig.update_xaxes(
-    showgrid=True,
-    gridcolor="#E6E6E6"
-)
+    st.header("💰 Coste Acumulado vs Día de Campaña")
 
-fig.update_yaxes(
-    showgrid=True,
-    gridcolor="#E6E6E6"
-)
-st.plotly_chart(
-    fig,
-    use_container_width=True
-)
-st.header("💰 Coste Acumulado vs Día de Campaña")
-
-fig_cost = px.line(
-    cost_df,
-    x="dia",
-    y="coste",
-    markers=True,
-    title="Evolución económica TSA-01",
-    color_discrete_sequence=["#4FAF4F"]
-)
-
-fig_cost.update_traces(
-    line=dict(width=4),
-    marker=dict(size=8),
-    fill="tozeroy"
-)
-
-fig_cost.update_layout(
-    xaxis_title="Día de Campaña",
-    yaxis_title="Coste Acumulado ($)",
-    plot_bgcolor="white",
-    paper_bgcolor="white",
-    height=500,
-    title_x=0.5,
-    font=dict(size=14)
-)
-fig_cost.update_xaxes(
-    showgrid=True,
-    gridcolor="#E6E6E6"
-)
-
-fig_cost.update_yaxes(
-    showgrid=True,
-    gridcolor="#E6E6E6"
-)
-fig_cost.update_yaxes(
-    tickprefix="$",
-    separatethousands=True
-)
-st.plotly_chart(
-    fig_cost,
-    use_container_width=True
-)
+    fig_cost = px.line(
+        cost_df,
+        x="dia",
+        y="coste",
+        markers=True,
+        title="Evolución económica TSA-01",
+        color_discrete_sequence=["#4FAF4F"]
+    )
+    
+    fig_cost.update_traces(
+        line=dict(width=4),
+        marker=dict(size=8),
+        fill="tozeroy"
+    )
+    
+    fig_cost.update_layout(
+        xaxis_title="Día de Campaña",
+        yaxis_title="Coste Acumulado ($)",
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        height=500,
+        title_x=0.5,
+        font=dict(size=14)
+    )
+    fig_cost.update_xaxes(
+        showgrid=True,
+        gridcolor="#E6E6E6"
+    )
+    
+    fig_cost.update_yaxes(
+        showgrid=True,
+        gridcolor="#E6E6E6"
+    )
+    fig_cost.update_yaxes(
+        tickprefix="$",
+        separatethousands=True
+    )
+    st.plotly_chart(
+        fig_cost,
+        use_container_width=True
+    )
 st.header("⚠️ Incidencias Relevantes")
 col_inc, col_pozo = st.columns([2,1])
 with col_inc:
