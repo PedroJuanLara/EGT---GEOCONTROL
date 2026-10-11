@@ -110,6 +110,25 @@ if pagina == "Gestión Documental":
         "Carpeta SharePoint",
         carpeta_sharepoint
     )
+    col_doc4, col_doc5, col_doc6 = st.columns(3)
+
+with col_doc4:
+    st.metric(
+        "DDR detectados",
+        "111"
+    )
+
+with col_doc5:
+    st.metric(
+        "Último DDR",
+        "DDR-111"
+    )
+
+with col_doc6:
+    st.metric(
+        "Sincronización",
+        "Pendiente"
+    )
 if sondeo_actual == "TSA-01":
 
     ruta_sharepoint = """
