@@ -16,6 +16,7 @@ sondeo_actual = st.sidebar.selectbox(
         "TSA-02"
     ]
 )
+
 df = pd.read_csv("data/tsa01_dashboard.csv")
 
 ultimo = df.iloc[-1]
