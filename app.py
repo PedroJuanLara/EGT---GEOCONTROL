@@ -110,6 +110,13 @@ if pagina == "Gestión Documental":
         "Carpeta SharePoint",
         carpeta_sharepoint
     )
+    st.link_button(
+    "📂 Abrir SharePoint",
+    "https://iter365.sharepoint.com/sites/IDAE-GEOTERMIA"
+    )
+    st.success(
+    f"Carpeta asociada: 353_DAILY_REPORTS/{carpeta_sharepoint}"
+)
     col_doc4, col_doc5, col_doc6 = st.columns(3)
 
 with col_doc4:
