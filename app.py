@@ -20,17 +20,17 @@ sondeo_actual = st.sidebar.selectbox(
 
 if sondeo_actual == "TSA-01":
 
-    dashboard_file = "data/tsa01_dashboard.csv"
-    depth_file = "data/tsa01_depth_history.csv"
-    cost_file = "data/tsa01_cost_history.csv"
-    events_file = "data/tsa01_events.csv"
+    dashboard_file = "data/TSA_01/dashboard.csv"
+    depth_file = "data/TSA_01/depth_history.csv"
+    cost_file = "data/TSA_01/cost_history.csv"
+    events_file = "data/TSA_01/events.csv"
 
 else:
 
-    dashboard_file = "data/tsa01_dashboard.csv"
-    depth_file = "data/tsa01_depth_history.csv"
-    cost_file = "data/tsa01_cost_history.csv"
-    events_file = "data/tsa01_events.csv"
+    dashboard_file = "data/TSA_01/dashboard.csv"
+    depth_file = "data/TSA_01/depth_history.csv"
+    cost_file = "data/TSA_01/cost_history.csv"
+    events_file = "data/TSA_01/events.csv"
 
 df = pd.read_csv(dashboard_file)
 
