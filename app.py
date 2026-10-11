@@ -208,6 +208,11 @@ with obj3:
     st.caption(
         f"{avance_tiempo_pct:.1f}% consumido"
     )
+    estado_global = (
+    avance_md_pct +
+    avance_coste_pct +
+    avance_tiempo_pct
+) / 3
     st.header("📊 Indicadores Ejecutivos")
 
 g1, g2, g3, g4 = st.columns(4)
@@ -367,16 +372,59 @@ with g3:
     st.caption(
         f"{ultimo['dia_campania']} días de {objetivo_dias} días"
     )
-st.header("📊 Estado General")
+with g4:
 
-st.info(
-    """
-    Bienvenido a EGT GeoControl.
+    fig_global = go.Figure()
 
-    Plataforma de supervisión, control y análisis
-    de campañas geotérmicas de EGT.
-    """
-)
+    fig_global.add_trace(
+        go.Indicator(
+            mode="gauge+number",
+            value=estado_global,
+            number={
+                "suffix": "%",
+                "font": {
+                    "size": 24
+                }
+            },
+            title={
+                "text": "📊 Estado Global"
+            },
+            gauge={
+                "axis": {
+                    "range": [0, 100]
+                },
+                "bar": {
+                    "color": "#6A5ACD"
+                },
+                "bgcolor": "white",
+                "steps": [
+                    {
+                        "range": [0, 100],
+                        "color": "#E6E6E6"
+                    }
+                ]
+            }
+        )
+    )
+
+    fig_global.update_layout(
+        height=180,
+        margin=dict(
+            t=20,
+            b=20,
+            l=20,
+            r=20
+        )
+    )
+
+    st.plotly_chart(
+        fig_global,
+        use_container_width=True
+    )
+
+    st.caption(
+        "Promedio Profundidad + Coste + Plazo"
+    )
 col_graf1, col_graf2 = st.columns(2)
 with col_graf1:
 
