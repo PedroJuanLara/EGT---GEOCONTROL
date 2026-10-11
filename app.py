@@ -258,20 +258,37 @@ st.header("⚠️ Incidencias Relevantes")
 col_inc, col_pozo = st.columns([2,1])
 with col_inc:
 
-    st.subheader("📋 Últimas incidencias")
+    st.subheader("⚠️ Incidencias Relevantes")
 
-    st.dataframe(
-        events_df[
-            [
-                "profundidad",
-                "tipo",
-                "criticidad",
-                "descripcion"
-            ]
-        ],
-        use_container_width=True,
-        hide_index=True
+    incidencias_df = events_df.sort_values(
+        by="profundidad",
+        ascending=False
     )
+
+    for _, row in incidencias_df.iterrows():
+
+        if row["criticidad"] == "Alta":
+            icono = "🔴"
+
+        elif row["criticidad"] == "Media":
+            icono = "🟠"
+
+        else:
+            icono = "🟢"
+
+        st.markdown(
+            f"""
+### {icono} {row['tipo']}
+
+📍 **Profundidad:** {row['profundidad']} m
+
+**Categoría:** {row['categoria']}
+
+📝 {row['descripcion']}
+
+---
+"""
+        )
 with col_pozo:
 
     st.subheader("🛢 Perfil del Pozo")
