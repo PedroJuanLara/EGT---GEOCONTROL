@@ -83,10 +83,8 @@ st.title("🌋 EGT GeoControl")
 st.caption(
     f"Sondeo activo: {sondeo_actual}"
 )
-
 st.subheader("Geothermal Project Control Center")
 st.markdown("---")
-
 st.header("🚦 Estado Ejecutivo")
 st.info(
     """
@@ -94,7 +92,6 @@ st.info(
     plazo, coste, seguridad e incidencias operativas.
     """
 )
-
 col_a, col_b, col_c, col_d = st.columns(4)
 
 with col_a:
