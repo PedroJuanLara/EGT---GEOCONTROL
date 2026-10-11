@@ -254,28 +254,19 @@ st.plotly_chart(
     fig_cost,
     use_container_width=True
 )
-st.header("⚠️ Mapa de Incidencias por Profundidad")
+st.header("⚠️ Incidencias Relevantes")
 
-fig_events = px.scatter(
-    events_df,
-    x=[1] * len(events_df),
-    y="profundidad",
-    color="categoria",
-    hover_data=[
-        "tipo",
-        "descripcion"
+st.dataframe(
+    events_df[
+        [
+            "profundidad",
+            "tipo",
+            "categoria",
+            "criticidad"
+        ]
     ],
-    title="Mapa de Riesgo TSA-01"
-)
-
-fig_events.update_layout(
-    xaxis_title="",
-    yaxis_title="Profundidad (m)",
-    showlegend=True
-)
-
-fig_events.update_xaxes(
-    visible=False
+    use_container_width=True,
+    hide_index=True
 )
 
 st.plotly_chart(
