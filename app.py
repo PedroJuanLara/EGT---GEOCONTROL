@@ -262,7 +262,8 @@ st.dataframe(
             "profundidad",
             "tipo",
             "categoria",
-            "criticidad"
+            "criticidad",
+            "descripcion"
         ]
     ],
     use_container_width=True,
