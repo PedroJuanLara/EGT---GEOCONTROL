@@ -9,22 +9,31 @@ st.set_page_config(
 )
 st.sidebar.title("🌋 GeoControl")
 
+sondeo_actual = st.sidebar.selectbox(
+    "Seleccionar sondeo",
+    [
+        "TSA-01",
+        "TSA-02"
+    ],
+    key="selector_sondeo_principal"
+)
+
 df = pd.read_csv("data/tsa01_dashboard.csv")
 
 ultimo = df.iloc[-1]
+
 coste_por_metro = (
     ultimo["coste_acumulado"] /
     ultimo["md"]
 )
+
 coste_por_dia = (
     ultimo["coste_acumulado"] /
     ultimo["dia_campania"]
 )
 
 objetivo_md = 3000
-
 objetivo_coste = 11591535
-
 objetivo_dias = 65
 
 avance_md_pct = (
@@ -45,24 +54,15 @@ avance_tiempo_pct = (
 depth_df = pd.read_csv(
     "data/tsa01_depth_history.csv"
 )
+
 events_df = pd.read_csv(
     "data/tsa01_events.csv"
 )
+
 cost_df = pd.read_csv(
     "data/tsa01_cost_history.csv"
 )
-cost_df = pd.read_csv(
-    "data/tsa01_cost_history.csv"
-)
-st.sidebar.title("🌋 GeoControl")
-sondeo_actual = st.sidebar.selectbox(
-    "Seleccionar sondeo",
-    [
-        "TSA-01",
-        "TSA-02"
-    ],
-    key="selector_sondeo_principal"
-))
+
 numero_eventos = len(events_df)
 
 if numero_eventos >= 5:
