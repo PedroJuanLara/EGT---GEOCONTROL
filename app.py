@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 st.set_page_config(
     page_title="EGT GeoControl",
     page_icon="🌋",
@@ -211,51 +212,55 @@ with obj3:
 
 g1, g2, g3, g4 = st.columns(4)
 with g1:
+fig_avance = go.Figure()
 
-    fig_avance = px.pie(
-        values=[
-            avance_md_pct,
-            100 - avance_md_pct
-        ],
-        names=[
-            "Completado",
-            "Pendiente"
-        ],
-        hole=0.75,
-        color_discrete_sequence=[
-            "#0F4C81",
-            "#E6E6E6"
-        ]
+fig_avance.add_trace(
+    go.Indicator(
+        mode="gauge+number",
+        value=avance_md_pct,
+        number={
+            "suffix": "%"
+        },
+        title={
+            "text": "🌋 Avance Físico"
+        },
+        gauge={
+            "axis": {
+                "range": [0, 100]
+            },
+            "bar": {
+                "color": "#0F4C81"
+            },
+            "bgcolor": "white",
+            "steps": [
+                {
+                    "range": [0, 100],
+                    "color": "#E6E6E6"
+                }
+            ]
+        }
     )
+)
 
-    fig_avance.update_traces(
-        textinfo="none"
+fig_avance.update_layout(
+    height=250,
+    margin=dict(
+        t=20,
+        b=20,
+        l=20,
+        r=20
     )
+)
 
-    fig_avance.update_layout(
-        showlegend=False,
-        height=250,
-        margin=dict(
-            t=10,
-            b=10,
-            l=10,
-            r=10
-        ),
-        annotations=[
-            dict(
-                text=f"{avance_md_pct:.1f}%<br>{ultimo['md']} m",
-                x=0.5,
-                y=0.5,
-                showarrow=False,
-                font=dict(size=18)
-            )
-        ]
-    )
+st.plotly_chart(
+    fig_avance,
+    use_container_width=True
+)
 
-    st.plotly_chart(
-        fig_avance,
-        use_container_width=True
-    )
+st.caption(
+    f"{ultimo['md']} m de {objetivo_md} m"
+)
+    
 
     st.caption("🌋 Avance Físico")
 st.header("📊 Estado General")
