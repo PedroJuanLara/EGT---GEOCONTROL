@@ -9,14 +9,6 @@ st.set_page_config(
 )
 st.sidebar.title("🌋 GeoControl")
 
-sondeo_actual = st.sidebar.selectbox(
-    "Seleccionar sondeo",
-    [
-        "TSA-01",
-        "TSA-02"
-    ]
-)
-
 df = pd.read_csv("data/tsa01_dashboard.csv")
 
 ultimo = df.iloc[-1]
@@ -63,14 +55,14 @@ cost_df = pd.read_csv(
     "data/tsa01_cost_history.csv"
 )
 st.sidebar.title("🌋 GeoControl")
-
 sondeo_actual = st.sidebar.selectbox(
     "Seleccionar sondeo",
     [
         "TSA-01",
         "TSA-02"
-    ]
-)
+    ],
+    key="selector_sondeo_principal"
+))
 numero_eventos = len(events_df)
 
 if numero_eventos >= 5:
