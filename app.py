@@ -34,6 +34,9 @@ if sondeo_actual == "TSA-01":
     ddr_detectados = 111
     ultimo_ddr = "DDR-111"
 
+    ultima_sincronizacion = "10/10/2026"
+    estado_sincronizacion = "Sincronizado"
+
 elif sondeo_actual == "TSA-02":
     
     dashboard_file = "data/TSA_02/dashboard.csv"
@@ -43,6 +46,9 @@ elif sondeo_actual == "TSA-02":
 
     ddr_detectados = 0
     ultimo_ddr = "-"
+
+    ultima_sincronizacion = "-"
+    estado_sincronizacion = "Pendiente"
 
 df = pd.read_csv(dashboard_file)
 
