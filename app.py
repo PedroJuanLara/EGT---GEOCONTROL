@@ -18,7 +18,21 @@ sondeo_actual = st.sidebar.selectbox(
     key="selector_sondeo_principal"
 )
 
-df = pd.read_csv("data/tsa01_dashboard.csv")
+if sondeo_actual == "TSA-01":
+
+    dashboard_file = "data/tsa01_dashboard.csv"
+    depth_file = "data/tsa01_depth_history.csv"
+    cost_file = "data/tsa01_cost_history.csv"
+    events_file = "data/tsa01_events.csv"
+
+else:
+
+    dashboard_file = "data/tsa01_dashboard.csv"
+    depth_file = "data/tsa01_depth_history.csv"
+    cost_file = "data/tsa01_cost_history.csv"
+    events_file = "data/tsa01_events.csv"
+
+df
 
 ultimo = df.iloc[-1]
 
@@ -52,15 +66,15 @@ avance_tiempo_pct = (
 ) * 100
 
 depth_df = pd.read_csv(
-    "data/tsa01_depth_history.csv"
+    depth_file
 )
 
 events_df = pd.read_csv(
-    "data/tsa01_events.csv"
+    events_file
 )
 
 cost_df = pd.read_csv(
-    "data/tsa01_cost_history.csv"
+    cost_file
 )
 
 numero_eventos = len(events_df)
