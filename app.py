@@ -219,15 +219,19 @@ with g1:
             mode="gauge+number",
             value=avance_md_pct,
             number={
-                "suffix": "%"
-            },
+    "suffix": "%",
+    "font": {
+        "size": 24
+    }
+},
             title={
                 "text": "🌋 Avance Físico"
             },
             gauge={
                 "axis": {
-                    "range": [0, 100]
-                },
+    "range": [0, 100],
+    "showticklabels": False
+},
                 "bar": {
                     "color": "#0F4C81"
                 },
@@ -243,7 +247,7 @@ with g1:
     )
     
     fig_avance.update_layout(
-        height=250,
+        height=180,
         margin=dict(
             t=20,
             b=20,
