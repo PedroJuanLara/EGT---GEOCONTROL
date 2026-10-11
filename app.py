@@ -124,7 +124,8 @@ if sincronizar:
     st.info(
         "Sincronización SharePoint en desarrollo"
     )
-    col_doc4, col_doc5, col_doc6, col_doc7 = st.columns(4)
+
+col_doc4, col_doc5, col_doc6, col_doc7 = st.columns(4)
 
 with col_doc4:
     st.metric(
