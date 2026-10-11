@@ -314,7 +314,7 @@ with g2:
     st.caption(
         f"{ultimo['coste_acumulado']/1000000:.1f} M$ de {objetivo_coste/1000000:.1f} M$"
     )
-    st.caption("🌋 Avance Físico")
+
 st.header("📊 Estado General")
 
 st.info(
