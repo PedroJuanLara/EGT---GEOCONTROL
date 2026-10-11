@@ -1,0 +1,6 @@
+profundidad,tipo,categoria,criticidad,descripcion
+121,String Stall,Operacional,Media,Inestabilidad de pozo
+390,Drill Out Failure,Operacional,Alta,Problemas perforando shoe
+405,Partial Losses,Hidraulico,Alta,Perdidas 70 bbl_h
+419,ADA Leak,Mecanico,Media,Fuga sistema ADA
+430,Mud Pump Failure,Mecanico,Alta,Fallo bombas de lodo
