@@ -82,7 +82,7 @@ st.caption(
 
 st.subheader(
     "Geothermal Project Control Center"
-)"
+)
 
 st.markdown("---")
 st.header("🚦 Estado Ejecutivo")
