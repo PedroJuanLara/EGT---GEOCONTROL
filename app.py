@@ -229,8 +229,7 @@ with g1:
             },
             gauge={
                 "axis": {
-    "range": [0, 100],
-    "showticklabels": False
+    "range": [0, 100]
 },
                 "bar": {
                     "color": "#0F4C81"
