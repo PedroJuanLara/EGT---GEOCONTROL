@@ -314,7 +314,59 @@ with g2:
     st.caption(
         f"{ultimo['coste_acumulado']/1000000:.1f} M$ de {objetivo_coste/1000000:.1f} M$"
     )
+with g3:
 
+    fig_plazo = go.Figure()
+
+    fig_plazo.add_trace(
+        go.Indicator(
+            mode="gauge+number",
+            value=avance_tiempo_pct,
+            number={
+                "suffix": "%",
+                "font": {
+                    "size": 24
+                }
+            },
+            title={
+                "text": "📅 Plazo"
+            },
+            gauge={
+                "axis": {
+                    "range": [0, 100]
+                },
+                "bar": {
+                    "color": "#F5A623"
+                },
+                "bgcolor": "white",
+                "steps": [
+                    {
+                        "range": [0, 100],
+                        "color": "#E6E6E6"
+                    }
+                ]
+            }
+        )
+    )
+
+    fig_plazo.update_layout(
+        height=180,
+        margin=dict(
+            t=20,
+            b=20,
+            l=20,
+            r=20
+        )
+    )
+
+    st.plotly_chart(
+        fig_plazo,
+        use_container_width=True
+    )
+
+    st.caption(
+        f"{ultimo['dia_campania']} días de {objetivo_dias} días"
+    )
 st.header("📊 Estado General")
 
 st.info(
