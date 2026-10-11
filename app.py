@@ -146,69 +146,65 @@ avance_pct = (
 
 st.header("🎯 Objetivos del Proyecto")
 
-fig_gauge = px.pie(
-    values=[avance_pct, 100 - avance_pct],
-    names=["Avance", "Pendiente"],
-    hole=0.75,
-    color_discrete_sequence=[
-        "#0F4C81",
-        "#E6E6E6"
-    ]
-)
-
-fig_gauge.update_traces(
-    textinfo="none"
-)
-
-fig_gauge.update_layout(
-    showlegend=False,
-    height=300,
-    margin=dict(
-        t=20,
-        b=20,
-        l=20,
-        r=20
-    ),
-    annotations=[
-        dict(
-            text=f"{avance_pct:.1f}%<br>{ultimo['md']} m",
-            x=0.5,
-            y=0.5,
-            showarrow=False,
-            font=dict(size=22)
-        )
-    ]
-)
-
-st.plotly_chart(
-    fig_gauge,
-    use_container_width=True
-)
-st.header("🎯 Objetivos del Proyecto")
-
 obj1, obj2, obj3 = st.columns(3)
 
 with obj1:
 
-    st.metric(
-        "🌋 Profundidad",
-        f"{ultimo['md']} m",
-        f"{avance_md_pct:.1f}% objetivo"
+    st.subheader("🌋 Profundidad")
+
+    st.write(
+        f"Actual: {ultimo['md']} m"
+    )
+
+    st.write(
+        f"Objetivo: {objetivo_md} m"
+    )
+
+    st.progress(
+        avance_md_pct / 100
+    )
+
+    st.caption(
+        f"{avance_md_pct:.1f}% completado"
     )
 
 with obj2:
 
-    st.metric(
-        "💰 Presupuesto",
-        f"{ultimo['coste_acumulado']/1000000:.1f} M$",
+    st.subheader("💰 Presupuesto")
+
+    st.write(
+        f"Actual: {ultimo['coste_acumulado']/1000000:.1f} M$"
+    )
+
+    st.write(
+        f"Objetivo: {objetivo_coste/1000000:.1f} M$"
+    )
+
+    st.progress(
+        avance_coste_pct / 100
+    )
+
+    st.caption(
         f"{avance_coste_pct:.1f}% consumido"
     )
 
 with obj3:
 
-    st.metric(
-        "📅 Plazo",
-        f"{ultimo['dia_campania']} días",
+    st.subheader("📅 Plazo")
+
+    st.write(
+        f"Actual: {ultimo['dia_campania']} días"
+    )
+
+    st.write(
+        f"Objetivo: {objetivo_dias} días"
+    )
+
+    st.progress(
+        avance_tiempo_pct / 100
+    )
+
+    st.caption(
         f"{avance_tiempo_pct:.1f}% consumido"
     )
 st.header("📊 Estado General")
