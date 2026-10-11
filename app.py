@@ -25,14 +25,16 @@ pagina = st.sidebar.radio(
     ]
 )
 if sondeo_actual == "TSA-01":
-
+    ddr_detectados = 111
+    ultimo_ddr = "DDR-111"
     dashboard_file = "data/TSA_01/dashboard.csv"
     depth_file = "data/TSA_01/depth_history.csv"
     cost_file = "data/TSA_01/cost_history.csv"
     events_file = "data/TSA_01/events.csv"
 
 elif sondeo_actual == "TSA-02":
-
+    ddr_detectados = 0
+    ultimo_ddr = "-"
     dashboard_file = "data/TSA_02/dashboard.csv"
     depth_file = "data/TSA_02/depth_history.csv"
     cost_file = "data/TSA_02/cost_history.csv"
@@ -130,13 +132,13 @@ col_doc4, col_doc5, col_doc6, col_doc7 = st.columns(4)
 with col_doc4:
     st.metric(
         "DDR detectados",
-        "111"
+        ddr_detectados
     )
 
 with col_doc5:
     st.metric(
         "Último DDR",
-        "DDR-111"
+        ultimo_ddr
     )
 
 with col_doc6:
