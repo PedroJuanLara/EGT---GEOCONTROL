@@ -17,6 +17,28 @@ coste_por_dia = (
     ultimo["coste_acumulado"] /
     ultimo["dia_campania"]
 )
+
+objetivo_md = 3000
+
+objetivo_coste = 11591535
+
+objetivo_dias = 65
+
+avance_md_pct = (
+    ultimo["md"] /
+    objetivo_md
+) * 100
+
+avance_coste_pct = (
+    ultimo["coste_acumulado"] /
+    objetivo_coste
+) * 100
+
+avance_tiempo_pct = (
+    ultimo["dia_campania"] /
+    objetivo_dias
+) * 100
+
 depth_df = pd.read_csv(
     "data/tsa01_depth_history.csv"
 )
@@ -162,6 +184,33 @@ st.plotly_chart(
     fig_gauge,
     use_container_width=True
 )
+st.header("🎯 Objetivos del Proyecto")
+
+obj1, obj2, obj3 = st.columns(3)
+
+with obj1:
+
+    st.metric(
+        "🌋 Profundidad",
+        f"{ultimo['md']} m",
+        f"{avance_md_pct:.1f}% objetivo"
+    )
+
+with obj2:
+
+    st.metric(
+        "💰 Presupuesto",
+        f"{ultimo['coste_acumulado']/1000000:.1f} M$",
+        f"{avance_coste_pct:.1f}% consumido"
+    )
+
+with obj3:
+
+    st.metric(
+        "📅 Plazo",
+        f"{ultimo['dia_campania']} días",
+        f"{avance_tiempo_pct:.1f}% consumido"
+    )
 st.header("📊 Estado General")
 
 st.info(
