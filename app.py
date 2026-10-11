@@ -517,7 +517,39 @@ col_inc, col_pozo = st.columns([3,1])
 with col_inc:
 
     st.header("⚠️ Incidencias Relevantes")
+altas = len(
+    events_df[
+        events_df["criticidad"] == "Alta"
+    ]
+)
 
+medias = len(
+    events_df[
+        events_df["criticidad"] == "Media"
+    ]
+)
+
+bajas = len(
+    events_df[
+        events_df["criticidad"] == "Baja"
+    ]
+)
+c1, c2, c3 = st.columns(3)
+
+with c1:
+    st.error(
+        f"🔴 Altas: {altas}"
+    )
+
+with c2:
+    st.warning(
+        f"🟠 Medias: {medias}"
+    )
+
+with c3:
+    st.success(
+        f"🟢 Bajas: {bajas}"
+    )
     incidencias_df = events_df.sort_values(
     by="profundidad",
     ascending=True
