@@ -107,10 +107,11 @@ if pagina == "Gestión Documental":
         carpeta_sharepoint = "TSA_02"
 
     st.metric(
-        "Carpeta SharePoint",
-        carpeta_sharepoint
-    )
-    st.link_button(
+    "Carpeta SharePoint",
+    carpeta_sharepoint
+)
+
+st.link_button(
     "📂 Abrir SharePoint",
     "https://iter365.sharepoint.com/sites/IDAE-GEOTERMIA"
 )
@@ -120,11 +121,10 @@ sincronizar = st.button(
 )
 
 if sincronizar:
-
     st.info(
         "Sincronización SharePoint en desarrollo"
     )
-    
+
 col_doc4, col_doc5, col_doc6, col_doc7 = st.columns(4)
 
 with col_doc4:
@@ -150,33 +150,13 @@ with col_doc7:
         "Última sincronización",
         "Sin datos"
     )
-if sondeo_actual == "TSA-01":
-
-    ruta_sharepoint = """
-    IDAE-GEOTERMIA /
-    Shared Documents /
-    3_EJECUCION /
-    35_SONDEOS /
-    353_DAILY_REPORTS /
-    TSA_01
-    """
-
-else:
-
-    ruta_sharepoint = """
-    IDAE-GEOTERMIA /
-    Shared Documents /
-    3_EJECUCION /
-    35_SONDEOS /
-    353_DAILY_REPORTS /
-    TSA_02
-    """
 
 st.text_area(
     "Ruta SharePoint",
     ruta_sharepoint,
     height=120
 )
+
 col_doc1, col_doc2, col_doc3 = st.columns(3)
 
 with col_doc1:
@@ -186,7 +166,6 @@ with col_doc1:
     )
 
 with col_doc2:
-
     st.metric(
         "Sondeo",
         sondeo_actual
@@ -212,7 +191,7 @@ st.info(
     """
 )
 
-    st.stop()
+st.stop()
 
 st.title("🌋 EGT GeoControl")
 
