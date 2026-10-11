@@ -32,7 +32,7 @@ else:
     cost_file = "data/tsa01_cost_history.csv"
     events_file = "data/tsa01_events.csv"
 
-df
+df = pd.read_csv(dashboard_file)
 
 ultimo = df.iloc[-1]
 
