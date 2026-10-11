@@ -118,7 +118,50 @@ with col8:
         f"{coste_por_dia:,.0f}"
     )
 st.markdown("---")
+avance_pct = (
+    ultimo["md"] / 3000
+) * 100
 
+st.header("🎯 Objetivos del Proyecto")
+
+fig_gauge = px.pie(
+    values=[avance_pct, 100 - avance_pct],
+    names=["Avance", "Pendiente"],
+    hole=0.75,
+    color_discrete_sequence=[
+        "#0F4C81",
+        "#E6E6E6"
+    ]
+)
+
+fig_gauge.update_traces(
+    textinfo="none"
+)
+
+fig_gauge.update_layout(
+    showlegend=False,
+    height=300,
+    margin=dict(
+        t=20,
+        b=20,
+        l=20,
+        r=20
+    ),
+    annotations=[
+        dict(
+            text=f"{avance_pct:.1f}%<br>{ultimo['md']} m",
+            x=0.5,
+            y=0.5,
+            showarrow=False,
+            font=dict(size=22)
+        )
+    ]
+)
+
+st.plotly_chart(
+    fig_gauge,
+    use_container_width=True
+)
 st.header("📊 Estado General")
 
 st.info(
