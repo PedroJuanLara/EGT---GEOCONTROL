@@ -67,16 +67,23 @@ numero_eventos = len(events_df)
 
 if numero_eventos >= 5:
     semaforo_riesgo = "🔴 RIESGO OPERATIVO"
+
 elif numero_eventos >= 3:
     semaforo_riesgo = "🟠 RIESGO OPERATIVO"
+
 else:
     semaforo_riesgo = "🟢 RIESGO OPERATIVO"
 
 st.title("🌋 EGT GeoControl")
+
 st.caption(
     f"Sondeo activo: {sondeo_actual}"
 )
-st.subheader("Geothermal Project Control Center")
+
+st.subheader(
+    "Geothermal Project Control Center"
+)"
+
 st.markdown("---")
 st.header("🚦 Estado Ejecutivo")
 st.info(
