@@ -267,43 +267,43 @@ with col_inc:
 
     for _, row in incidencias_df.iterrows():
 
-    if row["criticidad"] == "Alta":
-        icono = "🔴"
-        color_fondo = "#FDECEC"
-        color_borde = "#D64541"
-
-    elif row["criticidad"] == "Media":
-        icono = "🟠"
-        color_fondo = "#FFF4E5"
-        color_borde = "#F5A623"
-
-    else:
-        icono = "🟢"
-        color_fondo = "#EAF7EA"
-        color_borde = "#4FAF4F"
-
-    st.markdown(
-        f"""
-<div style="
-background-color:{color_fondo};
-border-left:8px solid {color_borde};
-padding:15px;
-margin-bottom:15px;
-border-radius:10px;
-">
-
-<b>{icono} {row['tipo']}</b><br><br>
-
-📍 <b>Profundidad:</b> {row['profundidad']} m<br>
-
-📂 <b>Categoría:</b> {row['categoria']}<br><br>
-
-📝 {row['descripcion']}
-
-</div>
-""",
-        unsafe_allow_html=True
-    )
+        if row["criticidad"] == "Alta":
+            icono = "🔴"
+            color_fondo = "#FDECEC"
+            color_borde = "#D64541"
+    
+        elif row["criticidad"] == "Media":
+            icono = "🟠"
+            color_fondo = "#FFF4E5"
+            color_borde = "#F5A623"
+    
+        else:
+            icono = "🟢"
+            color_fondo = "#EAF7EA"
+            color_borde = "#4FAF4F"
+    
+        st.markdown(
+            f"""
+    <div style="
+    background-color:{color_fondo};
+    border-left:8px solid {color_borde};
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    ">
+    
+    <b>{icono} {row['tipo']}</b><br><br>
+    
+    📍 <b>Profundidad:</b> {row['profundidad']} m<br>
+    
+    📂 <b>Categoría:</b> {row['categoria']}<br><br>
+    
+    📝 {row['descripcion']}
+    
+    </div>
+    """,
+            unsafe_allow_html=True
+        )
 with col_pozo:
 
     st.subheader("🛢 Perfil del Pozo")
