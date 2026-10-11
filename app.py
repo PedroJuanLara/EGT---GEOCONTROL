@@ -517,43 +517,46 @@ col_inc, col_pozo = st.columns([3,1])
 with col_inc:
 
     st.header("⚠️ Incidencias Relevantes")
-altas = len(
-    events_df[
-        events_df["criticidad"] == "Alta"
-    ]
-)
 
-medias = len(
-    events_df[
-        events_df["criticidad"] == "Media"
-    ]
-)
-
-bajas = len(
-    events_df[
-        events_df["criticidad"] == "Baja"
-    ]
-)
-c1, c2, c3 = st.columns(3)
-
-with c1:
-    st.error(
-        f"🔴 Altas: {altas}"
+    altas = len(
+        events_df[
+            events_df["criticidad"] == "Alta"
+        ]
     )
 
-with c2:
-    st.warning(
-        f"🟠 Medias: {medias}"
+    medias = len(
+        events_df[
+            events_df["criticidad"] == "Media"
+        ]
     )
 
-with c3:
-    st.success(
-        f"🟢 Bajas: {bajas}"
+    bajas = len(
+        events_df[
+            events_df["criticidad"] == "Baja"
+        ]
     )
+
+    c1, c2, c3 = st.columns(3)
+
+    with c1:
+        st.error(
+            f"🔴 Altas: {altas}"
+        )
+
+    with c2:
+        st.warning(
+            f"🟠 Medias: {medias}"
+        )
+
+    with c3:
+        st.success(
+            f"🟢 Bajas: {bajas}"
+        )
+
     incidencias_df = events_df.sort_values(
-    by="profundidad",
-    ascending=True
-)
+        by="profundidad",
+        ascending=True
+    )
 
     for _, row in incidencias_df.iterrows():
 
@@ -561,37 +564,37 @@ with c3:
             icono = "🔴"
             color_fondo = "#FDECEC"
             color_borde = "#D64541"
-    
+
         elif row["criticidad"] == "Media":
             icono = "🟠"
             color_fondo = "#FFF4E5"
             color_borde = "#F5A623"
-    
+
         else:
             icono = "🟢"
             color_fondo = "#EAF7EA"
             color_borde = "#4FAF4F"
-    
+
         st.markdown(
             f"""
-    <div style="
-    background-color:{color_fondo};
-    border-left:8px solid {color_borde};
-    padding:15px;
-    margin-bottom:15px;
-    border-radius:10px;
-    ">
-    
-    <b>{icono} {row['tipo']}</b><br><br>
-    
-    📍 <b>Profundidad:</b> {row['profundidad']} m<br>
-    
-    📂 <b>Categoría:</b> {row['categoria']}<br><br>
-    
-    📝 {row['descripcion']}
-    
-    </div>
-    """,
+<div style="
+background-color:{color_fondo};
+border-left:8px solid {color_borde};
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+">
+
+<b>{icono} {row['tipo']}</b><br><br>
+
+📍 <b>Profundidad:</b> {row['profundidad']} m<br>
+
+📂 <b>Categoría:</b> {row['categoria']}<br><br>
+
+📝 {row['descripcion']}
+
+</div>
+""",
             unsafe_allow_html=True
         )
 with col_pozo:
