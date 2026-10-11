@@ -25,20 +25,24 @@ pagina = st.sidebar.radio(
     ]
 )
 if sondeo_actual == "TSA-01":
-    ddr_detectados = 111
-    ultimo_ddr = "DDR-111"
+    
     dashboard_file = "data/TSA_01/dashboard.csv"
     depth_file = "data/TSA_01/depth_history.csv"
     cost_file = "data/TSA_01/cost_history.csv"
     events_file = "data/TSA_01/events.csv"
 
+    ddr_detectados = 111
+    ultimo_ddr = "DDR-111"
+
 elif sondeo_actual == "TSA-02":
-    ddr_detectados = 0
-    ultimo_ddr = "-"
+    
     dashboard_file = "data/TSA_02/dashboard.csv"
     depth_file = "data/TSA_02/depth_history.csv"
     cost_file = "data/TSA_02/cost_history.csv"
     events_file = "data/TSA_02/events.csv"
+
+    ddr_detectados = 0
+    ultimo_ddr = "-"
 
 df = pd.read_csv(dashboard_file)
 
