@@ -512,11 +512,11 @@ with col_graf2:
         fig_cost,
         use_container_width=True
     )
-st.header("⚠️ Incidencias Relevantes")
-col_inc, col_pozo = st.columns([2,1])
+col_inc, col_pozo = st.columns([3,1])
+
 with col_inc:
 
-    st.subheader("⚠️ Incidencias Relevantes")
+    st.header("⚠️ Incidencias Relevantes")
 
     incidencias_df = events_df.sort_values(
     by="profundidad",
