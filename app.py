@@ -212,54 +212,54 @@ with obj3:
 
 g1, g2, g3, g4 = st.columns(4)
 with g1:
-fig_avance = go.Figure()
-
-fig_avance.add_trace(
-    go.Indicator(
-        mode="gauge+number",
-        value=avance_md_pct,
-        number={
-            "suffix": "%"
-        },
-        title={
-            "text": "🌋 Avance Físico"
-        },
-        gauge={
-            "axis": {
-                "range": [0, 100]
+    fig_avance = go.Figure()
+    
+    fig_avance.add_trace(
+        go.Indicator(
+            mode="gauge+number",
+            value=avance_md_pct,
+            number={
+                "suffix": "%"
             },
-            "bar": {
-                "color": "#0F4C81"
+            title={
+                "text": "🌋 Avance Físico"
             },
-            "bgcolor": "white",
-            "steps": [
-                {
-                    "range": [0, 100],
-                    "color": "#E6E6E6"
-                }
-            ]
-        }
+            gauge={
+                "axis": {
+                    "range": [0, 100]
+                },
+                "bar": {
+                    "color": "#0F4C81"
+                },
+                "bgcolor": "white",
+                "steps": [
+                    {
+                        "range": [0, 100],
+                        "color": "#E6E6E6"
+                    }
+                ]
+            }
+        )
     )
-)
-
-fig_avance.update_layout(
-    height=250,
-    margin=dict(
-        t=20,
-        b=20,
-        l=20,
-        r=20
+    
+    fig_avance.update_layout(
+        height=250,
+        margin=dict(
+            t=20,
+            b=20,
+            l=20,
+            r=20
+        )
     )
-)
-
-st.plotly_chart(
-    fig_avance,
-    use_container_width=True
-)
-
-st.caption(
-    f"{ultimo['md']} m de {objetivo_md} m"
-)
+    
+    st.plotly_chart(
+        fig_avance,
+        use_container_width=True
+    )
+    
+    st.caption(
+        f"{ultimo['md']} m de {objetivo_md} m"
+    )
     
 
     st.caption("🌋 Avance Físico")
