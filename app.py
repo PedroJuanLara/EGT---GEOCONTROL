@@ -110,7 +110,52 @@ if pagina == "Gestión Documental":
         "Carpeta SharePoint",
         carpeta_sharepoint
     )
+if sondeo_actual == "TSA-01":
 
+    ruta_sharepoint = """
+    IDAE-GEOTERMIA /
+    Shared Documents /
+    3_EJECUCION /
+    35_SONDEOS /
+    353_DAILY_REPORTS /
+    TSA_01
+    """
+
+else:
+
+    ruta_sharepoint = """
+    IDAE-GEOTERMIA /
+    Shared Documents /
+    3_EJECUCION /
+    35_SONDEOS /
+    353_DAILY_REPORTS /
+    TSA_02
+    """
+
+st.text_area(
+    "Ruta SharePoint",
+    ruta_sharepoint,
+    height=120
+)
+col_doc1, col_doc2, col_doc3 = st.columns(3)
+
+with col_doc1:
+    st.metric(
+        "Estado",
+        "🟢 Conectable"
+    )
+
+with col_doc2:
+    st.metric(
+        "Sondeo",
+        carpeta_sharepoint
+    )
+
+with col_doc3:
+    st.metric(
+        "Origen",
+        "SharePoint"
+    )
     st.info(
         """
         Próximamente se mostrará:
