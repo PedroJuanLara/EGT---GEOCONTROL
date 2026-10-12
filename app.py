@@ -237,6 +237,30 @@ if pagina == "Sincronización":
     )
 
     st.stop()
+    if pagina == "Procesar DDR":
+
+    st.title("⚙️ Procesar DDR")
+
+    st.subheader(
+        f"Sondeo seleccionado: {sondeo_actual}"
+    )
+
+    archivos_ddr = [
+        "DDR-001.pdf",
+        "DDR-002.pdf",
+        "DDR-003.pdf"
+    ]
+
+    ddr_seleccionado = st.selectbox(
+        "Seleccionar DDR",
+        archivos_ddr
+    )
+
+    st.info(
+        f"DDR seleccionado: {ddr_seleccionado}"
+    )
+
+    st.stop()
 st.title("🌋 EGT GeoControl")
 
 st.caption(
