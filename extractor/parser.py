@@ -1,17 +1,7 @@
-"""
-EGT GeoControl
-DDR Parser V1
-
-Objetivo:
-Leer Daily Drilling Reports (DDR)
-y extraer información estructurada.
-
-Versión inicial:
-Todavía no procesa PDFs.
-Solo define los campos objetivo.
-"""
-
 from dataclasses import dataclass
+import re
+
+from pdf_reader import read_pdf
 
 
 @dataclass
@@ -40,25 +30,30 @@ class DDRData:
 
 def parse_ddr(pdf_path):
 
-    """
-    Función principal del extractor.
-
-    Entrada:
-        PDF DDR
-
-    Salida:
-        DDRData
-    """
+    texto = read_pdf(pdf_path)
 
     ddr = DDRData()
+
+    # --------------------------------
+    # DDR NUMBER
+    # --------------------------------
+
+    match = re.search(
+        r"DDR\s*(\d+)",
+        texto,
+        re.IGNORECASE
+    )
+
+    if match:
+        ddr.reporte = int(match.group(1))
 
     return ddr
 
 
 if __name__ == "__main__":
 
-    ejemplo = parse_ddr(
-        "DDR_001.pdf"
+    resultado = parse_ddr(
+        "test_data/20260514 TSA-01 Daily Report with cost DDR 01.pdf"
     )
 
-    print(ejemplo)
+    print(resultado)
