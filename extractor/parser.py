@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 import re
 
-from pdf_reader import read_pdf
+from extractor.pdf_reader import read_pdf
 
 
 @dataclass
