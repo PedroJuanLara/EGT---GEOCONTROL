@@ -245,18 +245,10 @@ if pagina == "Procesar DDR":
         f"Sondeo seleccionado: {sondeo_actual}"
     )
 
-    archivos_ddr = []
-
-if sondeo_actual == "TSA-01":
-
     archivos_ddr = [
-        "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
-    ]
-
-elif sondeo_actual == "TSA-02":
-
-    archivos_ddr = [
-        "Sin documentos"
+        "DDR-001.pdf",
+        "DDR-002.pdf",
+        "DDR-003.pdf"
     ]
 
     ddr_seleccionado = st.selectbox(
@@ -267,14 +259,17 @@ elif sondeo_actual == "TSA-02":
     st.info(
         f"DDR seleccionado: {ddr_seleccionado}"
     )
+
     st.subheader("🔍 Texto extraído del DDR")
 
-st.code(
-    """
+    st.code(
+        """
 Aquí aparecerá el texto extraído del PDF.
-""",
-    language="text"
-)
+        """,
+        language="text"
+    )
+
+    st.stop()
 
 if st.button("⚙️ Procesar DDR"):
 
