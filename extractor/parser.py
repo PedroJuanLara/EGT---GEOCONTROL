@@ -132,6 +132,21 @@ if coste_match:
     ddr.coste_acumulado = float(
         coste_limpio
     )
+    # --------------------------------
+# AFE %
+# --------------------------------
+
+afe_match = re.search(
+    r"(\d+\.\d+)\s*%",
+    texto
+)
+
+if afe_match:
+
+    ddr.afe_pct = float(
+        afe_match.group(1)
+    )
+
     return ddr
 
 
@@ -164,4 +179,7 @@ print(
 )
 print(
     f"Coste Acumulado: {resultado.coste_acumulado}"
+)
+print(
+    f"AFE %: {resultado.afe_pct}"
 )
