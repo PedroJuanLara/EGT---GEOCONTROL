@@ -275,7 +275,6 @@ Aquí aparecerá el texto extraído del PDF.
 
     st.stop()
 
-    st.stop()
 st.title("🌋 EGT GeoControl")
 
 st.caption(
