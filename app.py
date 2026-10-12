@@ -180,7 +180,7 @@ col_doc1, col_doc2, col_doc3 = st.columns(3)
 with col_doc1:
     st.metric(
         "Estado",
-        "🟢 Conectable"
+        "✅ Conectado"
     )
 
 with col_doc2:
