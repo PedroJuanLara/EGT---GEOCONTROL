@@ -146,7 +146,21 @@ if afe_match:
     ddr.afe_pct = float(
         afe_match.group(1)
     )
+# --------------------------------
+# NPT
+# --------------------------------
 
+npt_match = re.search(
+    r"NPT.*?(\d+\.\d+)",
+    texto,
+    re.IGNORECASE
+)
+
+if npt_match:
+
+    ddr.npt = float(
+        npt_match.group(1)
+    )
     return ddr
 
 
@@ -182,4 +196,7 @@ print(
 )
 print(
     f"AFE %: {resultado.afe_pct}"
+)
+print(
+    f"NPT: {resultado.npt}"
 )
