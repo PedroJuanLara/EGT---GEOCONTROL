@@ -246,9 +246,7 @@ if pagina == "Procesar DDR":
     )
 
     archivos_ddr = [
-        "DDR-001.pdf",
-        "DDR-002.pdf",
-        "DDR-003.pdf"
+        "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
     ]
 
     ddr_seleccionado = st.selectbox(
@@ -263,9 +261,7 @@ if pagina == "Procesar DDR":
     st.subheader("🔍 Texto extraído del DDR")
 
     st.code(
-        """
-Aquí aparecerá el texto extraído del PDF.
-        """,
+        "Aquí aparecerá el texto extraído del PDF",
         language="text"
     )
 
