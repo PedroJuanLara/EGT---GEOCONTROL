@@ -32,99 +32,45 @@ def parse_ddr(pdf_path):
 
     ddr = DDRData()
 
-    # ----------------------------
-    # DDR NUMBER
-    # ----------------------------
-
-    match = re.search(
-        r"Report No:",
-        texto,
-        re.IGNORECASE
-)
-
-    if match:
+    # Reporte
+    if "Report No" in texto:
         ddr.reporte = 1
 
-    # ----------------------------
-    # FECHA
-    # ----------------------------
-
+    # Fecha
     fecha_match = re.search(
         r"(\d{2}-[A-Za-z]{3}-\d{2})",
         texto
-)
+    )
 
     if fecha_match:
         ddr.fecha = fecha_match.group(1)
 
-    # ----------------------------
-    # MEASURED DEPTH
-    # ----------------------------
-
+    # MD
     md_match = re.search(
-        r"Measured\s+Depth.*?(\d+\.\d+)",
-        texto,
-        re.IGNORECASE
+        r"Measured Depth \(m\):\s*(\d+\.\d+)",
+        texto
     )
 
     if md_match:
         ddr.md = float(md_match.group(1))
         ddr.tvd = ddr.md
 
-    # ----------------------------
-    # TVD
-    # ----------------------------
-
-    tvd_match = re.search(
-        r"TVD.*?(\d+\.\d+)",
-        texto,
-        re.IGNORECASE
-    )
-
-    if tvd_match:
-        ddr.tvd = float(tvd_match.group(1))
-
-    # ----------------------------
-    # HOLE MADE
-    # ----------------------------
-
+    # Hole Made
     hole_match = re.search(
-        r"Hole Made.*?(\d+\.\d+)",
-        texto,
-        re.IGNORECASE | re.DOTALL
-)
+        r"Hole Made \(m\) / Hrs:\s*(\d+\.\d+)",
+        texto
+    )
 
     if hole_match:
         ddr.hole_made = float(hole_match.group(1))
 
-    # ----------------------------
     # ROP
-    # ----------------------------
-
     rop_match = re.search(
-        r"Average ROP.*?(\d+\.\d+)",
-        texto*
-        re.IGNORECASE | re.DOTALL
+        r"Average ROP \(m/hr\):\s*(\d+\.\d+)",
+        texto
     )
-    *`*)
 
     if rop_match:
         ddr.rop = float(rop_match.group(1))
 
     return ddr
-
-
-if __name__ == "__main__":
-
-    resultado = parse_ddr(
-        "test_data/20260514 TSA-01 Daily Report with cost DDR 01.pdf"
-    )
-
-    print("===== DDR EXTRAIDO =====")
-
-    print(f"Reporte: {resultado.reporte}")
-    print(f"Fecha: {resultado.fecha}")
-    print(f"MD: {resultado.md}")
-    print(f"TVD: {resultado.tvd}")
-    print(f"Hole Made: {resultado.hole_made}")
-    print(f"ROP: {resultado.rop}")
