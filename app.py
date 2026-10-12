@@ -276,6 +276,11 @@ if pagina == "Procesar DDR":
             )
 
             texto = read_pdf(pdf_path)
+            st.text_area(
+                "Texto DDR",
+                texto,
+                height=600
+)
             from extractor.parser import parse_ddr
 
             resultado = parse_ddr(pdf_path)
