@@ -1,25 +1,20 @@
 """
 EGT GeoControl
 
-CSV Generator V1
+CSV Generator
 
-Genera los ficheros:
-- dashboard.csv
-- depth_history.csv
-- cost_history.csv
-
-a partir de información extraída
-de los DDR.
+Genera dashboard.csv
+a partir de un DDR real.
 """
 
 import pandas as pd
 
-from test_ddr import test_ddr
+from parser import parse_ddr
 
 
-def generate_dashboard_csv():
+def generate_dashboard_csv(pdf_path):
 
-    ddr = test_ddr()
+    ddr = parse_ddr(pdf_path)
 
     dashboard_df = pd.DataFrame([
         {
@@ -27,9 +22,11 @@ def generate_dashboard_csv():
             "fecha": ddr.fecha,
             "dia_campania": ddr.dia_campania,
             "md": ddr.md,
-            "afe_pct": ddr.afe_pct,
-            "coste_acumulado": ddr.coste_acumulado,
+            "tvd": ddr.tvd,
+            "hole_made": ddr.hole_made,
             "rop": ddr.rop,
+            "coste_acumulado": ddr.coste_acumulado,
+            "afe_pct": ddr.afe_pct,
             "npt": ddr.npt
         }
     ])
@@ -42,52 +39,15 @@ def generate_dashboard_csv():
     return dashboard_df
 
 
-def generate_depth_csv():
-
-    ddr = test_ddr()
-
-    depth_df = pd.DataFrame([
-        {
-            "dia": ddr.dia_campania,
-            "md": ddr.md
-        }
-    ])
-
-    depth_df.to_csv(
-        "depth_history.csv",
-        index=False
-    )
-
-    return depth_df
-
-
-def generate_cost_csv():
-
-    ddr = test_ddr()
-
-    cost_df = pd.DataFrame([
-        {
-            "dia": ddr.dia_campania,
-            "coste": ddr.coste_acumulado
-        }
-    ])
-
-    cost_df.to_csv(
-        "cost_history.csv",
-        index=False
-    )
-
-    return cost_df
-
-
 if __name__ == "__main__":
 
-    generate_dashboard_csv()
-
-    generate_depth_csv()
-
-    generate_cost_csv()
-
-    print(
-        "CSV generados correctamente"
+    pdf_file = (
+        "test_data/"
+        "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
     )
+
+    dashboard = generate_dashboard_csv(
+        pdf_file
+    )
+
+    print(dashboard)
