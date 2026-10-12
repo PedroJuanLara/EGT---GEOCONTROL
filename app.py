@@ -25,24 +25,20 @@ pagina = st.sidebar.radio(
     ]
 )
 if sondeo_actual == "TSA-01":
-    
+
     dashboard_file = "data/TSA_01/dashboard.csv"
     depth_file = "data/TSA_01/depth_history.csv"
     cost_file = "data/TSA_01/cost_history.csv"
     events_file = "data/TSA_01/events.csv"
-
-    ddr_detectados = 111
-    ultimo_ddr = "DDR-111"
-
-    ultima_sincronizacion = "10/10/2026"
-    estado_sincronizacion = "Sincronizado"
+    estado_file = "data/TSA_01/estado.csv"
 
 elif sondeo_actual == "TSA-02":
-    
+
     dashboard_file = "data/TSA_02/dashboard.csv"
     depth_file = "data/TSA_02/depth_history.csv"
     cost_file = "data/TSA_02/cost_history.csv"
     events_file = "data/TSA_02/events.csv"
+    estado_file = "data/TSA_02/estado.csv"
 
     ddr_detectados = 0
     ultimo_ddr = "-"
@@ -94,7 +90,17 @@ events_df = pd.read_csv(
 cost_df = pd.read_csv(
     cost_file
 )
+estado_df = pd.read_csv(
+    estado_file
+)
 
+ddr_detectados = estado_df.iloc[0]["ddr_detectados"]
+
+ultimo_ddr = estado_df.iloc[0]["ultimo_ddr"]
+
+ultima_sincronizacion = estado_df.iloc[0]["ultima_sincronizacion"]
+
+estado_sincronizacion = estado_df.iloc[0]["
 numero_eventos = len(events_df)
 
 if numero_eventos >= 5:
