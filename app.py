@@ -50,7 +50,11 @@ elif sondeo_actual == "TSA-02":
 
 df = pd.read_csv(dashboard_file)
 
-ultimo = df.iloc[-1]
+df_sondeo = master_df[
+    master_df["Sondeo"] == sondeo_actual
+]
+
+ultimo = df_sondeo.iloc[-1]
 
 coste_por_metro = (
     ultimo["coste_acumulado"] /
