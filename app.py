@@ -22,7 +22,8 @@ pagina = st.sidebar.radio(
     [
         "Dashboard",
         "Gestión Documental",
-        "Sincronización"
+        "Sincronización",
+        "Procesar DDR"
     ]
 )
 if sondeo_actual == "TSA-01":
