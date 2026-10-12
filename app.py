@@ -260,27 +260,33 @@ if pagina == "Procesar DDR":
 
     if st.button("⚙️ Procesar DDR"):
 
-        st.success(
-            f"Procesando: {ddr_seleccionado}"
+    st.success(
+        f"Procesando: {ddr_seleccionado}"
+    )
+
+    st.subheader("🔍 Texto extraído del DDR")
+
+    try:
+
+        from extractor.pdf_reader import read_pdf
+
+        pdf_path = (
+            "extractor/test_data/"
+            "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
         )
 
-        st.subheader("🔍 Texto extraído del DDR")
+        texto = read_pdf(pdf_path)
 
-        try:
+        st.code(
+            texto[:5000],
+            language="text"
+        )
 
-            from extractor.pdf_reader import read_pdf
+    except Exception as e:
 
-            pdf_path = (
-                "extractor/test_data/"
-                "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
-            )
-
-            texto = read_pdf(pdf_path)
-
-            st.code(
-                texto[:5000],
-                language="text"
-            )
+        st.error(
+            f"Error leyendo PDF: {e}"
+        )
 
         except Exception as e:
 
