@@ -127,91 +127,91 @@ if pagina == "Gestión Documental":
         carpeta_sharepoint = "TSA_02"
 
     st.metric(
-    "Carpeta SharePoint",
-    carpeta_sharepoint
-)
+        "Carpeta SharePoint",
+        carpeta_sharepoint
+    )
 
-st.link_button(
-    "📂 Abrir SharePoint",
-    "https://iter365.sharepoint.com/sites/IDAE-GEOTERMIA"
-)
+    st.link_button(
+        "📂 Abrir SharePoint",
+        "https://iter365.sharepoint.com/sites/IDAE-GEOTERMIA"
+    )
 
-sincronizar = st.button(
-    "🔄 Sincronizar SharePoint"
-)
+    sincronizar = st.button(
+        "🔄 Sincronizar SharePoint"
+    )
 
-if sincronizar:
+    if sincronizar:
+        st.info(
+            "Sincronización SharePoint en desarrollo"
+        )
+
+    col_doc4, col_doc5, col_doc6, col_doc7 = st.columns(4)
+
+    with col_doc4:
+        st.metric(
+            "DDR detectados",
+            ddr_detectados
+        )
+
+    with col_doc5:
+        st.metric(
+            "Último DDR",
+            ultimo_ddr
+        )
+
+    with col_doc6:
+        st.metric(
+            "Sincronización",
+            estado_sincronizacion
+        )
+
+    with col_doc7:
+        st.metric(
+            "Última sincronización",
+            ultima_sincronizacion
+        )
+
+    st.text_area(
+        "Ruta SharePoint",
+        f"353_DAILY_REPORTS/{sondeo_actual.replace('-', '_')}",
+        height=120
+    )
+
+    col_doc1, col_doc2, col_doc3 = st.columns(3)
+
+    with col_doc1:
+        st.metric(
+            "Estado",
+            "✅ Conectado"
+        )
+
+    with col_doc2:
+        st.metric(
+            "Sondeo",
+            sondeo_actual
+        )
+
+    with col_doc3:
+        st.metric(
+            "Origen",
+            "SharePoint"
+        )
+
     st.info(
-        "Sincronización SharePoint en desarrollo"
+        """
+        Próximamente se mostrará:
+
+        • Número de DDR detectados
+
+        • Último reporte sincronizado
+
+        • Estado de sincronización
+
+        • Conexión SharePoint
+        """
     )
 
-col_doc4, col_doc5, col_doc6, col_doc7 = st.columns(4)
-
-with col_doc4:
-    st.metric(
-        "DDR detectados",
-        ddr_detectados
-    )
-
-with col_doc5:
-    st.metric(
-        "Último DDR",
-        ultimo_ddr
-    )
-
-with col_doc6:
-    st.metric(
-        "Sincronización",
-        estado_sincronizacion
-    )
-
-with col_doc7:
-    st.metric(
-        "Última sincronización",
-        ultima_sincronizacion
-    )
-
-st.text_area(
-    "Ruta SharePoint",
-    f"353_DAILY_REPORTS/{sondeo_actual.replace('-', '_')}",
-    height=120
-)
-
-col_doc1, col_doc2, col_doc3 = st.columns(3)
-
-with col_doc1:
-    st.metric(
-        "Estado",
-        "✅ Conectado"
-    )
-
-with col_doc2:
-    st.metric(
-        "Sondeo",
-        sondeo_actual
-    )
-
-with col_doc3:
-    st.metric(
-        "Origen",
-        "SharePoint"
-    )
-
-st.info(
-    """
-    Próximamente se mostrará:
-
-    • Número de DDR detectados
-
-    • Último reporte sincronizado
-
-    • Estado de sincronización
-
-    • Conexión SharePoint
-    """
-)
-
-st.stop()
+    st.stop()
 if pagina == "Sincronización":
 
     st.title("🔄 Sincronización")
@@ -259,8 +259,6 @@ if pagina == "Procesar DDR":
     st.info(
         f"DDR seleccionado: {ddr_seleccionado}"
     )
-
-    st.stop()
 
     st.stop()
 st.title("🌋 EGT GeoControl")
