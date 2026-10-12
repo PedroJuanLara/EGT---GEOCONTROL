@@ -98,6 +98,20 @@ if hole_match:
     ddr.hole_made = float(
         hole_match.group(1)
     )
+    # --------------------------------
+# ROP
+# --------------------------------
+
+rop_match = re.search(
+    r"Average\s+ROP.*?(\d+\.\d+)",
+    texto,
+    re.IGNORECASE
+)
+
+if rop_match:
+    ddr.rop = float(
+        rop_match.group(1)
+    )
     return ddr
 
 
@@ -124,4 +138,7 @@ print(
 )
 print(
     f"Hole Made: {resultado.hole_made}"
+)
+print(
+    f"ROP: {resultado.rop}"
 )
