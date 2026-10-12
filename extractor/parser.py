@@ -84,6 +84,20 @@ if tvd_match:
     ddr.*vd = float(
         tvd_match.grou*(1)
     )
+    # --------------------------------
+# HOLE MADE
+# --------------------------------
+
+hole_match = re.search(
+    r"Hole\s+Made.*?(\d+\.\d+)",
+    texto,
+    re.IGNORECASE
+)
+
+if hole_match:
+    ddr.hole_made = float(
+        hole_match.group(1)
+    )
     return ddr
 
 
@@ -106,5 +120,8 @@ print(
     f"MD: {resultado.md}"
 )
 print(
-*   f"TVD: {resultado.tvd}"
+   f"TVD: {resultado.tvd}"
+)
+print(
+    f"Hole Made: {resultado.hole_made}"
 )
