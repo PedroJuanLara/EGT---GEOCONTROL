@@ -72,16 +72,16 @@ def parse_ddr(pdf_path):
 
     if rop_match:
         ddr.rop = float(rop_match.group(1))
-# ----------------------------
-# COSTE ACUMULADO
-# ----------------------------
+    # ----------------------------
+    # COSTE ACUMULADO
+    # ----------------------------
 
-costes = re.findall(
-    r"(\d{1,3}(?:,\d{3})+)",
-    texto
-)
+    costes = re.findall(
+        r"(\d{1,3}(?:,\d{3})+)",
+        texto
+    )
 
-if len(costes) >= 1:
+    if len(costes) >= 1:
 
     try:
 
@@ -91,4 +91,4 @@ if len(costes) >= 1:
 
     except:
         pass
-    return ddr
+return ddr
