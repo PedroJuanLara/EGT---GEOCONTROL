@@ -252,14 +252,19 @@ if pagina == "Procesar DDR":
         cantidad_ddr
     )
 
-
-    ddr_seleccionado = st.selectbox(
-        "Seleccionar DDR",
-        archivos_ddr
-    )
-
     st.info(
-        f"DDR seleccionado: {ddr_seleccionado}"
+        """
+        Esta página procesará todos los DDR del sondeo seleccionado
+        y generará automáticamente:
+
+        • dashboard.csv
+
+        • depth_history.csv
+
+        • cost_history.csv
+
+        • events.csv
+        """
     )
 
     if st.button("⚙️ Procesar Sondeo Completo"):
@@ -267,76 +272,6 @@ if pagina == "Procesar DDR":
         st.success(
             f"Procesando {cantidad_ddr} DDR del {sondeo_actual}"
         )
-
-        st.subheader("🔍 Texto extraído del DDR")
-
-        try:
-
-            from extractor.pdf_reader import read_pdf
-
-            pdf_path = (
-                "extractor/test_data/"
-                "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
-            )
-
-            texto = read_pdf(pdf_path)
-            st.text_area(
-                "Texto DDR",
-                texto,
-                height=600
-)
-            from extractor.parser import parse_ddr
-
-            resultado = parse_ddr(pdf_path)
-
-            st.subheader("📊 Datos extraídos")
-
-            st.write(
-                f"Reporte: {resultado.reporte}"
-)
-
-            st.write(
-                f"Fecha: {resultado.fecha}"
-)
-
-            st.write(
-                f"MD: {resultado.md}"
-)
-
-            st.write(
-                f"TVD: {resultado.tvd}"
-)
-
-            st.write(
-                f"Hole Made: {resultado.hole_made}"
-)
-
-            st.write(
-                f"ROP: {resultado.rop}"
-)
-
-            st.write(
-                f"Coste Acumulado: {resultado.coste_acumulado}"
-)
-
-            st.write(
-                f"AFE %: {resultado.afe_pct}"
-)
-
-            st.write(
-                f"NPT: {resultado.npt}"
-)
-
-            st.code(
-                texto[:5000],
-                language="text"
-            )
-
-        except Exception as e:
-
-            st.error(
-                f"Error leyendo PDF: {e}"
-            )
 
     st.stop()
 
