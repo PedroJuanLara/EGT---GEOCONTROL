@@ -42,8 +42,7 @@ def generate_dashboard_csv(pdf_path):
 if __name__ == "__main__":
 
     pdf_file = (
-        "test_data/"
-        "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
+        "test_data/20260514 TSA-01 Daily Report with cost DDR 01.pdf"
     )
 
     dashboard = generate_dashboard_csv(
