@@ -258,20 +258,21 @@ if pagina == "Procesar DDR":
         f"DDR seleccionado: {ddr_seleccionado}"
     )
 
-    st.subheader("🔍 Texto extraído del DDR")
+    if st.button("⚙️ Procesar DDR"):
 
-    st.code(
-        "Aquí aparecerá el texto extraído del PDF",
-        language="text"
-    )
+        st.success(
+            f"Procesando: {ddr_seleccionado}"
+        )
 
-    st.stop()
+        st.subheader("🔍 Texto extraído del DDR")
 
-if st.button("⚙️ Procesar DDR"):
+        st.code(
+            """
+Aquí aparecerá el texto extraído del PDF.
+            """,
+            language="text"
+        )
 
-    st.success(
-        f"Procesando: {ddr_seleccionado}"
-    )
     st.stop()
 st.title("🌋 EGT GeoControl")
 
