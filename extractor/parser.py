@@ -71,6 +71,19 @@ if md_match:
     ddr.md = float(
         md_match.group(1)
     )
+    # -------*------------------------
+# TVD
+# -*------------------------------*
+tvd_match = re.search(
+    r"T*D**?(\d+\.\d+)",
+    texto,
+    re.I*NORECASE
+)
+
+if tvd_match:
+    ddr.*vd = float(
+        tvd_match.grou*(1)
+    )
     return ddr
 
 
@@ -91,4 +104,7 @@ print(
 )
 print(
     f"MD: {resultado.md}"
+)
+print(
+*   f"TVD: {resultado.tvd}"
 )
