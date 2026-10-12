@@ -46,6 +46,17 @@ def parse_ddr(pdf_path):
 
     if match:
         ddr.reporte = int(match.group(1))
+# --------------------------------
+# FECHA
+# --------------------------------
+
+fecha_match = re.search(
+    r"(\d{2}/\d{2}/\d{4})",
+    texto
+)
+
+if fecha_match:
+    ddr.fecha = fecha_match.group(1)
 
     return ddr
 
@@ -56,4 +67,12 @@ if __name__ == "__main__":
         "test_data/20260514 TSA-01 Daily Report with cost DDR 01.pdf"
     )
 
-    print(resultado)
+    print("===== DDR EXTRAIDO =====")
+
+print(
+    f"Reporte: {resultado.reporte}"
+)
+
+print(
+    f"Fecha: {resultado.fecha}"
+)
