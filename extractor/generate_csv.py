@@ -9,7 +9,7 @@ a partir de un DDR real.
 
 import pandas as pd
 
-from parser import parse_ddr
+from extractor.parser import parse_ddr
 
 
 def generate_dashboard_csv(pdf_path):
