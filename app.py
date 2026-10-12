@@ -267,6 +267,15 @@ elif sondeo_actual == "TSA-02":
     st.info(
         f"DDR seleccionado: {ddr_seleccionado}"
     )
+    st.subheader("🔍 Texto extraído del DDR")
+
+st.code(
+    """
+Aquí aparecerá el texto extraído del PDF.
+""",
+    language="text"
+)
+
 if st.button("⚙️ Procesar DDR"):
 
     st.success(
