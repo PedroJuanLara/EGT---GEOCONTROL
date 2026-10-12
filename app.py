@@ -251,21 +251,46 @@ if pagina == "Procesar DDR":
         "DDR detectados",
         cantidad_ddr
     )
+    col_a, col_b, col_c = st.columns(3)
+
+with col_a:
+    st.metric(
+        "DDR detectados",
+        111
+    )
+
+with col_b:
+    st.metric(
+        "Procesados",
+        1
+    )
+
+with col_c:
+    st.metric(
+        "Pendientes",
+        110
+    )
 
     st.info(
-        """
-        Esta página procesará todos los DDR del sondeo seleccionado
-        y generará automáticamente:
+    """
+    Estado del sondeo TSA_01
 
-        • dashboard.csv
+    ✅ 1 DDR procesado
 
-        • depth_history.csv
+    ⏳ 110 DDR pendientes
 
-        • cost_history.csv
+    Próxima fase:
 
-        • events.csv
-        """
-    )
+    • Procesar automáticamente todos los DDR
+
+    • Alimentar GeoControl_Reports
+
+    • Actualizar Dashboard
+
+    • Generar histórico completo
+    """
+)
+
 
     if st.button("⚙️ Procesar Sondeo Completo"):
 
