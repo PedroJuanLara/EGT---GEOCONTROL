@@ -237,7 +237,7 @@ if pagina == "Sincronización":
     )
 
     st.stop()
-    if pagina == "Procesar DDR":
+if pagina == "Procesar DDR":
 
     st.title("⚙️ Procesar DDR")
 
@@ -259,6 +259,8 @@ if pagina == "Sincronización":
     st.info(
         f"DDR seleccionado: {ddr_seleccionado}"
     )
+
+    st.stop()
 
     st.stop()
 st.title("🌋 EGT GeoControl")
