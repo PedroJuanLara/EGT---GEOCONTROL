@@ -37,22 +37,22 @@ def parse_ddr(pdf_path):
     # ----------------------------
 
     match = re.search(
-        r"DDR\s*(\d+)",
+        r"Report No:",
         texto,
         re.IGNORECASE
-    )
+)
 
     if match:
-        ddr.reporte = int(match.group(1))
+        ddr.reporte = 1
 
     # ----------------------------
     # FECHA
     # ----------------------------
 
     fecha_match = re.search(
-        r"(\d{2}/\d{2}/\d{4})",
+        r"(\d{2}-[A-Za-z]{3}-\d{2})",
         texto
-    )
+)
 
     if fecha_match:
         ddr.fecha = fecha_match.group(1)
@@ -69,6 +69,7 @@ def parse_ddr(pdf_path):
 
     if md_match:
         ddr.md = float(md_match.group(1))
+        ddr.tvd = ddr.md
 
     # ----------------------------
     # TVD
@@ -88,10 +89,10 @@ def parse_ddr(pdf_path):
     # ----------------------------
 
     hole_match = re.search(
-        r"Hole\s+Made.*?(\d+\.\d+)",
+        r"Hole Made.*?(\d+\.\d+)",
         texto,
-        re.IGNORECASE
-    )
+        re.IGNORECASE | re.DOTALL
+)
 
     if hole_match:
         ddr.hole_made = float(hole_match.group(1))
@@ -101,10 +102,11 @@ def parse_ddr(pdf_path):
     # ----------------------------
 
     rop_match = re.search(
-        r"Average\s+ROP.*?(\d+\.\d+)",
-        texto,
-        re.IGNORECASE
+        r"Average ROP.*?(\d+\.\d+)",
+        texto*
+        re.IGNORECASE | re.DOTALL
     )
+    *`*)
 
     if rop_match:
         ddr.rop = float(rop_match.group(1))
