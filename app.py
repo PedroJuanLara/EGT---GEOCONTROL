@@ -268,24 +268,24 @@ if pagina == "Procesar DDR":
 
         try:
 
-    from extractor.pdf_reader import read_pdf
+            from extractor.pdf_reader import read_pdf
 
-    pdf_path = (
-        "extractor/test_data/"
-        "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
+             pdf_path = (
+                "extractor/test_data/"
+                "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
     )
 
-    texto = read_pdf(pdf_path)
+            texto = read_pdf(pdf_path)
 
-    st.code(
-        texto[:5000],
-        language="text"
+            st.code(
+                texto[:5000],
+                language="text"
     )
 
-except Exception as e:
+    except Exception as e:
 
-    st.error(
-        f"Error leyendo PDF: {e}"
+        st.error(
+            f"Error leyendo PDF: {e}"
     )
 
 
