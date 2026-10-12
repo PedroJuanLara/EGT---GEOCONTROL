@@ -1,202 +1,179 @@
 from dataclasses import dataclass
-import re
+*mport re
 
-from pdf_reader import read_pdf
+from pdf_reader import r*ad_pdf
 
 
 @dataclass
-class DDRData:
-
-    reporte: int = 0
-
+class DDRData:*
+    reporte* int = 0
     fecha: str = ""
 
-    dia_campania: int = 0
+    *ia_campania: int = 0
 
-    md: float = 0.0
+    md* float = 0.0
+*   tv*: float = 0.0
 
-    tvd: float = 0.0
+    hole*made: float = 0.0
 
-    hole_made: float = 0.0
+*   rop: float = 0.0
 
-    rop: float = 0.0
+    coste*acumul*do: float = 0.0
 
-    coste_acumulado: float = 0.0
+    afe*pct: float = 0.0
 
-    afe_pct: float = 0.0
-
-    npt: float = 0.0
+    n*t: float = 0.*
 
 
 def parse_ddr(pdf_path):
 
-    texto = read_pdf(pdf_path)
+    t*xto = read_pdf(pdf_path)
 
-    ddr = DDRData()
+    ddr * DDRData()
 
-    # --------------------------------
-    # DDR NUMBER
-    # --------------------------------
+    #*----------------------------
+    #*DDR NUMBER
+    #*----------------------------
 
-    match = re.search(
-        r"DDR\s*(\d+)",
+    *atch = re.search(
+        r"*DR\s*(\d+)",
         texto,
+      * re.IGNORECASE
+    )
+
+    if*match:
+        ddr.reporte = int(m*tch.group(1))
+
+    #*----------------*-----------
+    # FECHA
+    # ----*-----------------------
+
+    fecha*match = re.search(
+        r"(\d{2*/\d{2}/\d{4})",
+        texto
+    *
+
+    if fecha_match:
+        ddr.*echa = fecha_match.group(1)
+
+   *# ----------------------------
+   *# MEASURED DEPTH
+    #*----------------------------
+
+    *d_match = re.search(
+        r"Mea*ured\s+Depth.*?(\d+\.\d+)",
+      * texto,
+        re.IGNORECASE
+    *
+
+    if md_match:
+        d*r.md = float(md_match.group(1))
+
+ *  # ----------------------------
+ *  # TVD
+    # --------------------*-------
+
+    tvd_match = re.search*
+        r"T*D.*?(\d+\.\d+)",
+        texto,
+  *     re.IGNORECASE
+    )
+
+    if*tvd_match:
+        d*r.tvd = float(tvd_match.group(1*)
+
+    # -------------------------*--
+    # HOLE MADE
+    # ---------*------------------
+
+    hole_match*= re.search(
+        r"Hole\s+Made**?(\d+\.\d+)",
+        texto,
+    *   re.IGNORECASE
+    )
+
+    if hol*_match:
+        d*r.hole_made = float(hole_match.gro*p(1))
+
+    #*----------------------------
+    #*ROP
+    # ------------------------*---
+
+    rop_match = re.search(
+  *     r"Average\s+ROP.*?(\d+\.\d+)"*
+        texto,
+        re.IGNOREC*SE
+    )
+
+    if rop_match:
+      * d*r.*op = float(rop_match.group(1))
+
+  * # ----------------------------
+  * # COSTE ACUMULADO
+    # ---------*------------------
+
+    coste_matc* = re.search(
+        r"Accumulate*\s+Cost.*?([\d,]+)",
+        texto*
         re.IGNORECASE
     )
 
-    if match:
-        ddr.reporte = int(match.group(1))
-# --------------------------------
-# FECHA
-# --------------------------------
+    *f coste_match:
 
-fecha_match = re.search(
-    r"(\d{2}/\d{2}/\d{4})",
-    texto
-)
+        coste_limp*o = (
+            coste_match.grou*(1)
+            .replace(",", "")
+*       )
 
-if fecha_match:
-    ddr.fecha = fecha_match.group(1)
-# --------------------------------
-# MEASURED DEPTH
-# --------------------------------
+        ddr.coste_acumul*do = float(
+            coste_limp*o
+        )
 
-md_match = re.search(
-    r"Measured\s+Depth.*?(\d+\.\d+)",
-    texto,
-    re.IGNORECASE
-)
+    # ---------------*------------
+    # AFE %
+    # ---*------------------------
 
-if md_match:
-    ddr.md = float(
-        md_match.group(1)
-    )
-    # -------*------------------------
-# TVD
-# -*------------------------------*
-tvd_match = re.search(
-    r"T*D**?(\d+\.\d+)",
-    texto,
-    re.I*NORECASE
-)
-
-if tvd_match:
-    ddr.*vd = float(
-        tvd_match.grou*(1)
-    )
-    # --------------------------------
-# HOLE MADE
-# --------------------------------
-
-hole_match = re.search(
-    r"Hole\s+Made.*?(\d+\.\d+)",
-    texto,
-    re.IGNORECASE
-)
-
-if hole_match:
-    ddr.hole_made = float(
-        hole_match.group(1)
-    )
-    # --------------------------------
-# ROP
-# --------------------------------
-
-rop_match = re.search(
-    r"Average\s+ROP.*?(\d+\.\d+)",
-    texto,
-    re.IGNORECASE
-)
-
-if rop_match:
-    ddr.rop = float(
-        rop_match.group(1)
-    )
-    # --------------------------------
-# COSTE ACUMULADO
-# --------------------------------
-
-coste_match = re.search(
-    r"Accumulated\s+Cost.*?([\d,]+)",
-    texto,
-    re.IGNORECASE
-)
-
-if coste_match:
-
-    coste_limpio = (
-        coste_match.group(1)
-        .replace(",", "")
+    afe_*atch = re.search(
+        r"(\d+\.*d+)\s*%",
+        texto
     )
 
-    ddr.coste_acumulado = float(
-        coste_limpio
+   *if afe_match:
+        ddr.afe_pct * float(
+            afe_match.grou*(1)
+        )
+
+    # -------------*--------------
+    # NPT
+    # ---*------------------------
+
+    npt_*atch = re.search(
+        r"NPT.*?*\d+\.\d+)",
+        texto,
+       *re.IGNORECASE
     )
-    # --------------------------------
-# AFE %
-# --------------------------------
 
-afe_match = re.search(
-    r"(\d+\.\d+)\s*%",
-    texto
-)
-
-if afe_match:
-
-    ddr.afe_pct = float(
-        afe_match.group(1)
-    )
-# --------------------------------
-# NPT
-# --------------------------------
-
-npt_match = re.search(
-    r"NPT.*?(\d+\.\d+)",
-    texto,
-    re.IGNORECASE
-)
-
-if npt_match:
-
-    ddr.npt = float(
-        npt_match.group(1)
-    )
+    if npt_ma*ch:
+        ddr.npt = float(
+     *      npt_match.group(1)
+        )*
     return ddr
 
 
-if __name__ == "__main__":
+if __name__ == "*_main__":
 
-    resultado = parse_ddr(
-        "test_data/20260514 TSA-01 Daily Report with cost DDR 01.pdf"
+    resultado = parse_d*r(
+        "test*data/20260514 TSA-01 Daily Report *ith cost DDR 01.pdf"
     )
 
-    print("===== DDR EXTRAIDO =====")
+    pr*nt("===== DDR EXTRAIDO =====")
 
-print(
-    f"Reporte: {resultado.reporte}"
-)
-
-print(
-    f"Fecha: {resultado.fecha}"
-)
-print(
-    f"MD: {resultado.md}"
-)
-print(
-   f"TVD: {resultado.tvd}"
-)
-print(
-    f"Hole Made: {resultado.hole_made}"
-)
-print(
-    f"ROP: {resultado.rop}"
-)
-print(
-    f"Coste Acumulado: {resultado.coste_acumulado}"
-)
-print(
-    f"AFE %: {resultado.afe_pct}"
-)
-print(
-    f"NPT: {resultado.npt}"
-)
+  * print(f"Reporte: {resultado.repor*e}")
+    print(f"Fecha: {resultado*fecha}")
+    print(f"MD: {resultad*.md}")
+    print(f"TVD: {resultado*tvd}")
+    print*f"Hole Made: {resultado.hole_made}*)
+    print*f"ROP: {*esultado.rop}")
+    print*f"Coste Acumulado: {resultado.cost*_acumulado}")
+    print(f"AFE %: {*esultado.afe_pct}")
+    print*f"NPT: {resultado.npt}")
