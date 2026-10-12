@@ -21,7 +21,8 @@ pagina = st.sidebar.radio(
     "Navegación",
     [
         "Dashboard",
-        "Gestión Documental"
+        "Gestión Documental",
+        "Sincronización"
     ]
 )
 if sondeo_actual == "TSA-01":
@@ -210,7 +211,31 @@ st.info(
 )
 
 st.stop()
+if pagina == "Sincronización":
 
+    st.title("🔄 Sincronización")
+
+    st.metric(
+        "Estado SharePoint",
+        "✅ Conectado"
+    )
+
+    st.metric(
+        "Estado Power Automate",
+        "✅ Activo"
+    )
+
+    st.metric(
+        "Último DDR Detectado",
+        ultimo_ddr
+    )
+
+    st.metric(
+        "Última Sincronización",
+        ultima_sincronizacion
+    )
+
+    st.stop()
 st.title("🌋 EGT GeoControl")
 
 st.caption(
