@@ -57,7 +57,20 @@ fecha_match = re.search(
 
 if fecha_match:
     ddr.fecha = fecha_match.group(1)
+# --------------------------------
+# MEASURED DEPTH
+# --------------------------------
 
+md_match = re.search(
+    r"Measured\s+Depth.*?(\d+\.\d+)",
+    texto,
+    re.IGNORECASE
+)
+
+if md_match:
+    ddr.md = float(
+        md_match.group(1)
+    )
     return ddr
 
 
@@ -75,4 +88,7 @@ print(
 
 print(
     f"Fecha: {resultado.fecha}"
+)
+print(
+    f"MD: {resultado.md}"
 )
