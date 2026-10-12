@@ -266,27 +266,12 @@ if pagina == "Procesar DDR":
 
     st.subheader("🔍 Texto extraído del DDR")
 
-    try:
-
-        from extractor.pdf_reader import read_pdf
-
-        pdf_path = (
-            "extractor/test_data/"
-            "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
-        )
-
-        texto = read_pdf(pdf_path)
-
-        st.code(
-            texto[:5000],
-            language="text"
-        )
-
-    except Exception as e:
-
-        st.error(
-            f"Error leyendo PDF: {e}"
-        )
+    st.code(
+        """
+Aquí aparecerá el texto extraído del PDF.
+        """,
+        language="text"
+    )
 
     st.stop()
 st.title("🌋 EGT GeoControl")
