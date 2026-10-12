@@ -100,7 +100,7 @@ ultimo_ddr = estado_df.iloc[0]["ultimo_ddr"]
 
 ultima_sincronizacion = estado_df.iloc[0]["ultima_sincronizacion"]
 
-estado_sincronizacion = estado_df.iloc[0]["
+estado_sincronizacion = estado_df.iloc[0]["estado"]
 numero_eventos = len(events_df)
 
 if numero_eventos >= 5:
