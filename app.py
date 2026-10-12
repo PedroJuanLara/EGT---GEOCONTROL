@@ -242,16 +242,17 @@ if pagina == "Procesar DDR":
     st.title("⚙️ Procesar Sondeo")
 
     st.subheader(
-        f"Sondeo seleccionado: {sondeo_actual}"
-    )
+    f"Sondeo seleccionado: {sondeo_actual}"
+)
 
-    cantidad_ddr = 111
+cantidad_ddr = 111
 
-    st.metric(
-        "DDR detectados",
-        cantidad_ddr
-    )
-    col_a, col_b, col_c = st.columns(3)
+st.metric(
+    "DDR detectados",
+    cantidad_ddr
+)
+
+col_a, col_b, col_c = st.columns(3)
 
 with col_a:
     st.metric(
@@ -271,7 +272,7 @@ with col_c:
         110
     )
 
-    st.info(
+st.info(
     """
     Estado del sondeo TSA_01
 
@@ -291,14 +292,13 @@ with col_c:
     """
 )
 
+if st.button("⚙️ Procesar Sondeo Completo"):
 
-    if st.button("⚙️ Procesar Sondeo Completo"):
+    st.success(
+        f"Procesando {cantidad_ddr} DDR del {sondeo_actual}"
+    )
 
-        st.success(
-            f"Procesando {cantidad_ddr} DDR del {sondeo_actual}"
-        )
-
-    st.stop()
+st.stop()
 
 st.title("🌋 EGT GeoControl")
 
