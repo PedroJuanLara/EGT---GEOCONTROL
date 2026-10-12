@@ -278,44 +278,44 @@ if pagina == "Procesar DDR":
             texto = read_pdf(pdf_path)
             from extractor.parser import parse_ddr
 
-resultado = parse_ddr(pdf_path)
+            resultado = parse_ddr(pdf_path)
 
-st.subheader("📊 Datos extraídos")
+            st.subheader("📊 Datos extraídos")
 
-st.write(
-    f"Reporte: {resultado.reporte}"
+            st.write(
+                f"Reporte: {resultado.reporte}"
 )
 
-st.write(
-    f"Fecha: {resultado.fecha}"
+            st.write(
+                f"Fecha: {resultado.fecha}"
 )
 
-st.write(
-    f"MD: {resultado.md}"
+            st.write(
+                f"MD: {resultado.md}"
 )
 
-st.write(
-    f"TVD: {resultado.tvd}"
+            st.write(
+                f"TVD: {resultado.tvd}"
 )
 
-st.write(
-    f"Hole Made: {resultado.hole_made}"
+            st.write(
+                f"Hole Made: {resultado.hole_made}"
 )
 
-st.write(
-    f"ROP: {resultado.rop}"
+            st.write(
+                f"ROP: {resultado.rop}"
 )
 
-st.write(
-    f"Coste Acumulado: {resultado.coste_acumulado}"
+            st.write(
+                f"Coste Acumulado: {resultado.coste_acumulado}"
 )
 
-st.write(
-    f"AFE %: {resultado.afe_pct}"
+            st.write(
+                f"AFE %: {resultado.afe_pct}"
 )
 
-st.write(
-    f"NPT: {resultado.npt}"
+            st.write(
+                f"NPT: {resultado.npt}"
 )
 
             st.code(
