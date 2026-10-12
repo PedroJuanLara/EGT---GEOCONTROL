@@ -112,6 +112,26 @@ if rop_match:
     ddr.rop = float(
         rop_match.group(1)
     )
+    # --------------------------------
+# COSTE ACUMULADO
+# --------------------------------
+
+coste_match = re.search(
+    r"Accumulated\s+Cost.*?([\d,]+)",
+    texto,
+    re.IGNORECASE
+)
+
+if coste_match:
+
+    coste_limpio = (
+        coste_match.group(1)
+        .replace(",", "")
+    )
+
+    ddr.coste_acumulado = float(
+        coste_limpio
+    )
     return ddr
 
 
@@ -141,4 +161,7 @@ print(
 )
 print(
     f"ROP: {resultado.rop}"
+)
+print(
+    f"Coste Acumulado: {resultado.coste_acumulado}"
 )
