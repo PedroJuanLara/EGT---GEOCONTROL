@@ -239,15 +239,19 @@ if pagina == "Sincronización":
     st.stop()
 if pagina == "Procesar DDR":
 
-    st.title("⚙️ Procesar DDR")
+    st.title("⚙️ Procesar Sondeo")
 
     st.subheader(
         f"Sondeo seleccionado: {sondeo_actual}"
     )
 
-    archivos_ddr = [
-        "20260514 TSA-01 Daily Report with cost DDR 01.pdf"
-    ]
+    cantidad_ddr = 111
+
+    st.metric(
+        "DDR detectados",
+        cantidad_ddr
+    )
+
 
     ddr_seleccionado = st.selectbox(
         "Seleccionar DDR",
@@ -258,10 +262,10 @@ if pagina == "Procesar DDR":
         f"DDR seleccionado: {ddr_seleccionado}"
     )
 
-    if st.button("⚙️ Procesar DDR"):
+    if st.button("⚙️ Procesar Sondeo Completo"):
 
         st.success(
-            f"Procesando: {ddr_seleccionado}"
+            f"Procesando {cantidad_ddr} DDR del {sondeo_actual}"
         )
 
         st.subheader("🔍 Texto extraído del DDR")
