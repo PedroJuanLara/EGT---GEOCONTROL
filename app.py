@@ -155,21 +155,68 @@ if pagina == "Sincronización":
     st.stop()
 
 # --- PÁGINA: PROCESAR DDR ---
+import os
+from extractor.parser import parse_ddr
+
 if pagina == "Procesar DDR":
-    st.title("⚙️ Procesar Sondeo")
+    st.title("⚙️ Procesar Sondeo y Reportes DDR")
     st.subheader(f"Sondeo seleccionado: {sondeo_actual}")
+
+    # Definir la ruta de la carpeta donde están los PDFs según el sondeo
+    carpeta_pdfs = f"data/{sondeo_actual.replace('-', '_')}/reports/" 
+    # (Si los guardas en otra ruta, ajústala aquí, ej: "reports/")
     
-    cantidad_ddr = 111
+    if not os.path.exists(carpeta_pdfs):
+        os.makedirs(carpeta_pdfs)
+
+    archivos_pdf = [f for f in os.listdir(carpeta_pdfs) if f.lower().endswith(".pdf")] if os.path.exists(carpeta_pdfs) else []
+    cantidad_detectados = len(archivos_pdf)
+
     col_a, col_b, col_c = st.columns(3)
     with col_a:
-        st.metric("DDR detectados", cantidad_ddr)
+        st.metric("DDR detectados en carpeta", cantidad_detectados)
     with col_b:
-        st.metric("Procesados", 1)
+        st.metric("Carpeta monitorizada", carpeta_pdfs)
     with col_c:
-        st.metric("Pendientes", 110)
-        
-    if st.button("⚙️ Procesar Sondeo Completo"):
-        st.success(f"Procesando {cantidad_ddr} DDR del {sondeo_actual}")
+        st.metric("Estado", "Listo para procesar" if cantidad_detectados > 0 else "Carpeta vacía")
+
+    if cantidad_detectados == 0:
+        st.warning(f"No se encontraron archivos PDF en la ruta `{carpeta_pdfs}`. Sube los reportes a esa carpeta para poder procesarlos.")
+    
+    if st.button("⚙️ Procesar Todos los DDR y Actualizar Dashboard"):
+        if cantidad_detectados == 0:
+            st.error("No hay archivos para procesar.")
+        else:
+            barra_progreso = st.progress(0)
+            status_text = st.empty()
+            
+            registros_procesados = []
+            
+            for i, archivo in enumerate(archivos_pdf):
+                status_text.text(f"Procesando ({i+1}/{cantidad_detectados}): {archivo}")
+                ruta_completa = os.path.join(carpeta_pdfs, archivo)
+                try:
+                    # Llamada a tu parser que extrae los datos del PDF
+                    datos_ddr = parse_ddr(ruta_completa)
+                    registros_procesados.append(vars(datos_ddr))
+                except Exception as e:
+                    st.error(f"Error en {archivo}: {e}")
+                
+                barra_progreso.progress((i + 1) / cantidad_detectados)
+            
+            if registros_procesados:
+                # Convertir a DataFrame y guardar en el dashboard.csv correspondiente
+                df_nuevo = pd.DataFrame(registros_procesados)
+                
+                # Asegurar que la carpeta de destino exista
+                os.makedirs(f"data/{sondeo_actual.replace('-', '_')}", exist_ok=True)
+                df_nuevo.to_csv(dashboard_file, index=False)
+                
+                st.success(f"¡Proceso completado con éxito! Se han procesado {len(registros_procesados)} reportes y actualizado el Dashboard.")
+                st.balloons()
+            else:
+                st.error("No se pudo extraer información de los archivos.")
+                
     st.stop()
 
 # --- PÁGINA PRINCIPAL: DASHBOARD ---
